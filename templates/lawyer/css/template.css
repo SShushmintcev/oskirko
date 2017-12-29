@@ -1,0 +1,145 @@
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html,
+body {
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: #8e8e8e;
+}
+
+iframe {
+  border: none !important;
+}
+
+a {
+    text-decoration: none;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+
+form,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.clear {
+  clear: both;
+}
+
+ul.g-list {
+  list-style: none;
+}
+
+ul.g-list li {
+  float: left;
+  margin-left: 4px;
+}
+
+.l-container {
+  margin: 0 auto;
+  width: 960px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.separator {
+  border-bottom: 1px solid #000000;
+}
+
+#lHeader {
+  background: rgba(151, 0, 252, 0.92);
+  color: #ffffff;
+}
+
+.l-header {
+  height: 140px;
+}
+
+.l-main-menu {
+  height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid #000000;
+}
+
+
+.l-main-menu > .menu {
+    list-style-type: none;
+    line-height: 50px;
+    display: block;
+}
+
+.l-main-menu > .menu > li {
+    float: left;
+    margin-left: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#lFooter {
+  background: rgba(29, 29, 29, 0.92);
+  /* color: #000000; */
+}
+
+.l-footer {
+  height: 370px;
+}
+
+.l-footer-content {
+  height: 320px;
+}
+
+.l-footer-bottom {
+  border-top: 1px solid #484848;
+  height: 40px;
+  line-height: 45px;
+}
+
+.copyright {
+  margin-left: 9px;
+}
+
+.footer-social {
+  margin-right: 90px;
+  margin-top: 4px;
+}

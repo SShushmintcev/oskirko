@@ -28,24 +28,27 @@
 		<position>header-logo</position>
 		<position>header-body</position>
 		<position>body</position>
-		<position>short-menu</position>
+		<position>main-menu</position>
 		<position>main-video</position>
 		<position>news</position>
 		<position>lang</position>
-		<position>module-1</position>
-		<position>module-2</position>
-		<position>module-3</position>
-		<position>module-4</position>
-		<position>module-5</position>
-		<position>module-6</position>
-		<position>module-7</position>
-		<position>module-8</position>
-		<position>module-10</position>
-		<position>module-11</position>
-		<position>module-12</position>
-		<position>module-13</position>		
+		<position>side-menu</position>
+		<position>position-0</position>
+		<position>position-1</position>
+		<position>position-2</position>
+		<position>position-3</position>
+		<position>position-4</position>
+		<position>position-5</position>
+		<position>position-6</position>
+		<position>position-7</position>
+		<position>position-8</position>
+		<position>position-9</position>
+		<position>position-10</position>
+		<position>position-11</position>
+		<position>position-12</position>
+		<position>position-13</position>
+		<position>position-14</position>
 		<position>footer</position>
-		<position>footer-social</position>
 	</positions>
 	<languages folder="language">
 		<language tag="ru-RU">ru-RU/ru-RU.tpl_lawyer.ini</language>
