@@ -25,7 +25,6 @@
 		<folder>components</folder>	
 	</files>
 	<positions>
-		<position>header-logo</position>
 		<position>header-body</position>
 		<position>body</position>
 		<position>main-menu</position>
@@ -33,6 +32,8 @@
 		<position>news</position>
 		<position>lang</position>
 		<position>side-menu</position>
+
+
 		<position>position-0</position>
 		<position>position-1</position>
 		<position>position-2</position>

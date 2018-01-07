@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+    <name>mod_wrap_menu</name>
+    <author>Svyatoslav Shushmintcev</author>
+    <creationDate>01 2018</creationDate>
+    <authorEmail>small85@mail.ru</authorEmail>
+    <version>1.0.0</version>
+    <description>MOD_WRAP_MENU_XML_DESCRIPTION</description>
+    <files>
+        <filename>mod_wrap_menu.xml</filename>
+        <filename module="mod_wrap_menu">mod_wrap_menu.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/default_component.php</filename>
+        <filename>tmpl/default_heading.php</filename>
+        <filename>tmpl/default_separator.php</filename>
+        <filename>tmpl/default_url.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>en-GB.mod_wrap_menu.ini</filename>
+        <filename>en-GB.mod_wrap_menu.sys.ini</filename>
+        <filename>en-US.mod_wrap_menu.ini</filename>
+        <filename>en-US.mod_wrap_menu.sys.ini</filename>
+        <filename>ru-RU.mod_wrap_menu.ini</filename>
+        <filename>ru-RU.mod_wrap_menu.sys.ini</filename>
+    </files>
+    <languages>
+		<language tag="en-GB">en-GB.mod_wrap_menu.ini</language>
+		<language tag="en-GB">en-GB.mod_wrap_menu.sys.ini</language>
+        <language tag="en-US">en-US.mod_wrap_menu.ini</language>
+		<language tag="en-US">en-US.mod_wrap_menu.sys.ini</language>
+        <language tag="ru-RU">ru-RU.mod_wrap_menu.ini</language>
+		<language tag="ru-RU">ru-RU.mod_wrap_menu.sys.ini</language>
+	</languages>
+    <config>
+    <fields name="params">
+        <fieldset name="basic" addfieldpath="/administrator/components/com_menus/models/fields">
+            <field
+                    name="menutype"
+                    type="menu"
+                    label="MOD_WRAP_MENU_FIELD_MENUTYPE_LABEL"
+                    description="MOD_WRAP_MENU_FIELD_MENUTYPE_DESC"
+                    clientid="0"
+                />            
+        </fieldset>    
+    </fields>
+    </config>
+</extension>
