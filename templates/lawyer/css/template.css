@@ -156,11 +156,8 @@ ul.g-list li {
     word-wrap: break-word;
 }
 
-#lMainMenu {
-    margin-bottom: 24px;
-}
-
 .l-main-menu {
+    padding-bottom: 24px;
     height: 50px;
     border: 1px solid #000000;
     font-family: Verdana, Geneva, sans-serif;
@@ -172,7 +169,6 @@ ul.g-list li {
     list-style-type: none;
     line-height: 50px;
     display: block;
-    margin-left: 30px;
 }
 
 .l-main-menu > .menu > li {
@@ -207,8 +203,24 @@ ul.g-list li {
     min-height: 450px;
 }
 
-.side-container {
+.c-left-cont {
     width: 120px;
+    overflow: hidden;
+}
+
+.c-center-cont {
+    width: 540px;
+    height: 410px;
+    overflow: hidden;
+}
+
+.c-center-cont > div {
+    margin: 0px 17px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.c-right-cont {
+    width: 300px;
     overflow: hidden;
 }
 
@@ -229,6 +241,17 @@ ul.g-list li {
     /*line-height: 82px;*/
     display: block;
 }
+
+.side-menu li span {
+    display: block;
+    padding: 27px 0;
+    position: relative;
+}
+
+
+
+
+
 
 
 

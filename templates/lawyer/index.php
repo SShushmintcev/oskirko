@@ -1,7 +1,8 @@
 <?php
 
-defined('_JEXEC') or die;
-//defined('_JEXEC') or die('Restricted access');
+//defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted access');
+
 
 JLoader::import('joomla.filesystem.file');
 
@@ -20,7 +21,6 @@ $imgPath = $templatePath . '/img/';
 $this->setHtml5(true);
 
 $params = $app->getTemplate(true)->params;
-
 
 // Add JavaScript Frameworks
 JHtml::_('bootstrap.framework');
@@ -95,16 +95,42 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
 
 <div id="lContent">
     <div class="l-content l-container">
-        <div class="left side-container">
+        <div class="left c-left-cont">
             <jdoc:include type="modules" name="side-menu"/>
         </div>
-        <div class="left">2</div>
-        <div class="left">3</div>
+        <div class="left c-center-cont">
+            <div class="c-center-body">
+                <jdoc:include type="modules" name="main-video"/>
+                <div>
+                    urls
+                </div>
+            </div>
+        </div>
+        <div class="left c-right-cont">
+
+<!--            <div class="wrapper-component">-->
+<!--                <div class="wrapper-title-line"></div>-->
+<!--                <div class="wrapper-title wrapper-title-light">-->
+<!--                    <div class="wrapper-check wrapper-check-light"></div>-->
+<!--                    <span class="wrapper-text-title">-->
+<!--                        <a href="#">NEWS</a>-->
+<!--                    </span>-->
+<!--                </div>-->
+<!--                <div class="wrapper-body-light">-->
+<!--                    <div class="wrapper-body-content">-->
+<!--                        news-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+
+            <jdoc:include type="modules" name="news"/>
+        </div>
         <div class="clear"></div>
 
-        <div class="left">4</div>
-        <div class="left">5</div>
-        <div class="left">6</div>
+        <div class="left c-bot-left-cont">4</div>
+        <div class="left c-bot-center-cont">5</div>
+        <div class="left c-bot-right-cont">6</div>
         <div class="clear"></div>
         <div>MAP</div>
     </div>

@@ -35,7 +35,7 @@ class JFormRuleContactEmailMessage extends JFormRule
 	public function test(SimpleXMLElement $element, $value, $group = null, Registry $input = null, JForm $form = null)
 	{
 		$params = JComponentHelper::getParams('com_contact');
-		$banned = $params->get('banned_text');
+		$banned = $params->get('showon');
 
 		if ($banned)
 		{

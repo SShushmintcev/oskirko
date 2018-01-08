@@ -1,10 +1,10 @@
 <?php
 class JConfig {
-	public $offline = '1';
+	public $offline = '0';
 	public $offline_message = 'Сайт закрыт на техническое обслуживание.<br />Пожалуйста, зайдите позже.';
 	public $display_offline_message = '1';
 	public $offline_image = '';
-	public $sitename = 'Адвокатская палата';
+	public $sitename = 'Адвокатская консультация';
 	public $editor = 'tinymce';
 	public $captcha = '0';
 	public $list_limit = '20';
@@ -15,7 +15,7 @@ class JConfig {
 	public $host = 'localhost';
 	public $user = 'root';
 	public $password = 'sisoPass1';
-	public $db = 'oskirko';
+	public $db = 'oskirko_dev';
 	public $dbprefix = 'osk1_';
 	public $live_site = '';
 	public $secret = 'Jvyuypz3vNwrJ2ZF';

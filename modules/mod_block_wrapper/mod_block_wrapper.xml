@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+    <name>mod_block_wrapper</name>
+    <author>Svyatoslav Shushmintcev</author>
+    <creationDate>01 2018</creationDate>
+    <authorEmail>small85@mail.ru</authorEmail>
+    <version>1.0.0</version>
+    <description>MOD_BLOCK_WRAPPER_DESCRIPTION</description>
+    <files>
+        <filename>mod_block_wrapper.xml</filename>
+        <filename module="mod_block_wrapper">mod_block_wrapper.php</filename>
+        <filename>index.html</filename>
+        <filename>helper.php</filename>
+        <filename>tmpl/default.php</filename>
+        <filename>tmpl/index.html</filename>
+        <filename>rules/isArticle.php</filename>
+        <filename>rules/index.html</filename>
+    </files>
+
+    <media folder="media" destination="mod_block_wrapper">
+        <filename>check-dark.png</filename>
+        <filename>check-light.png</filename>
+        <filename>header.png</filename>
+        <filename>headerCheck.png</filename>
+        <filename>headerLaw.png</filename>
+        <filename>lHeader.png</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+
+    <languages>
+		<language tag="en-GB">en-GB.mod_block_wrapper.ini</language>
+		<language tag="en-GB">en-GB.mod_block_wrapper.sys.ini</language>
+        <language tag="en-US">en-US.mod_block_wrapper.ini</language>
+		<language tag="en-US">en-US.mod_block_wrapper.sys.ini</language>
+        <language tag="ru-RU">ru-RU.mod_block_wrapper.ini</language>
+		<language tag="ru-RU">ru-RU.mod_block_wrapper.sys.ini</language>
+	</languages>
+    <config>
+    <fields name="params">
+        <fieldset name="basic" addrulepath="modules/mod_block_wrapper/rules">
+            <field name="width" 
+                type="number" 
+                default="300" 
+                label="MOD_BLOCK_WRAPPER_WIDTH" 
+                description="MOD_BLOCK_WRAPPER_WIDTH_DESC" />
+                
+            <field name="height" 
+                type="number" 
+                default="340" 
+                label="MOD_BLOCK_WRAPPER_HEIGHT" 
+                description="MOD_BLOCK_WRAPPER_HEIGHT_DESC" />
+
+            <field name="selecttype"
+                type="list"
+                default=""
+                required="true"
+                label="MOD_BLOCK_WRAPPER_SELECT_TYPE" 
+                description="MOD_BLOCK_WRAPPER_SELECT_TYPE_DESC">
+                <option value="">Please Select</option>
+                <option value="1">MOD_BLOCK_WRAPPER_SELECT_TYPE_NEWS</option>
+                <option value="2">MOD_BLOCK_WRAPPER_SELECT_TYPE_ARTICLE</option>
+            </field>
+
+            <field
+                name="count"
+                type="number"
+                showon="selecttype:1"
+                label="MOD_BLOCK_WRAPPER_COUNT"
+                description="MOD_BLOCK_WRAPPER_COUNT_DESC"
+                default="5"
+            />
+
+            <field name="catid"
+            type="category"
+            extension="com_content"
+            showon="selecttype:1"
+            default=""
+            required="true"
+            label="MOD_BLOCK_WRAPPER_CATEGORY"
+            description="MOD_BLOCK_WRAPPER_CATEGORY_DESC" />
+
+            <field name="article" 
+                type="number" 
+                default=""
+                validate="isArticle"
+                showon="selecttype:2"
+                label="MOD_BLOCK_WRAPPER_ARTICLE" 
+                description="MOD_BLOCK_WRAPPER_ARTICLE_DESC" />
+
+            <field name="styleblock"
+                type="radio"
+                default="0"
+                label="MOD_BLOCK_WRAPPER_STYLE_BLOCK"
+                description="MOD_BLOCK_WRAPPER_STYLE_BLOCK_DESC">
+                <option value="0">Light</option>
+                <option value="1">Dark</option>
+            </field>
+        </fieldset>
+        <fieldset name="advanced">
+            <field
+                    name="layout"
+                    type="modulelayout"
+                    label="Layout"
+            />
+
+            <field
+                    name="moduleclass_sfx"
+                    type="textarea" rows="3"
+                    label="CSS class module"
+            />
+
+            <field
+                    name="cache"
+                    type="list"
+                    label="Cache"
+                    default="1"
+            >
+                <option value="1">JGLOBAL_USE_GLOBAL</option>
+                <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+            </field>
+
+            <field
+                    name="cache_time"
+                    type="number"
+                    label="Time cache"
+                    default="900"
+            />
+
+            <field
+                    name="cachemode"
+                    type="hidden"
+                    default="itemid"
+            >
+                <option value="itemid"></option>
+            </field>
+        </fieldset>
+    </fields>
+    </config>
+</extension>
