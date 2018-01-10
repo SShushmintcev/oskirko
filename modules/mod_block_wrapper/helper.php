@@ -27,153 +27,163 @@ class ModBlockWrapper
         $data->count = $params->get('count');
         $data->articleId = $params->get('article');
 
+        try {
+	        switch ($data->type) {
+		        case '1' :
+			        // $t = ModArticlesNewsHelper::getList($params);
+			        $news = self::getNewsByCategory($params);
 
-        switch ($data->type) {
-            case '1' :
-                $articleModel = JModelLegacy::getInstance('Category', 'ContentModel', array('ignore_request' => true));
-                $list = ModArticlesNewsHelper::getList($params);
-                break;
-            case '2' :
-                // Get an instance of the generic articles model
-                $articleModel = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true));
-                $articleModel->setState('params', $params);
+			        if (count($news)){
+				        $data->title = $news[0]->category_title;
+				        $data->body = $news;
+				        break;
+			        }
 
-                $article = $articleModel->getItem($data->articleId);
-                break;
-            default :
+			        throw new Exception('News not found');
 
-                break;
+			        break;
+		        case '2' :
+			        $article = JTable::getInstance('content');
+			        $article->load($data->articleId);
+
+			        if (!$article->id) {
+				        throw new Exception('The article not found');
+			        }
+
+			        $articleModel = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true));
+			        $articleModel->setState('params', $params);
+
+			        $article = $articleModel->getItem($data->articleId);
+
+			        if ($article->state === '2' || $article->state === '0') {
+				        throw new Exception('The article not publish');
+			        }
+
+			        $article->slug = $article->id . ':' . $article->alias;
+
+			        $article->catslug = $article->catid . ':' . $article->category_alias;
+
+			        $article->introtext = JHtml::_('content.prepare', $article->introtext, '', 'mod_block_wrapper.content');
+
+			        $article->link = JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid, $article->language));
+
+			        $data->title = $article->title;
+			        $data->body = $article;
+			        break;
+		        default :
+			        break;
+	        }
         }
-//
-//        $app       = JFactory::getApplication();
-//        $appParams = $app->getParams();
-//        $model->setState('params', $appParams);
-        // $app = JFactory::getApplication();
-        // $menu = $app->getMenu();
-
-        // $user = JFactory::getUser();
-        // $levels = $user->getAuthorisedViewLevels();
-        // asort($levels);
-        // $key = 'menu_items' . $params . implode(',', $levels);
-        // $cache = JFactory::getCache('mod_wrap_menu', '');
-
-        // if ($cache->contains($key))
-        // {
-        // 	$items = $cache->get($key);
-        // }
-        // else
-        // {
-        // 	$items = $menu->getItems('menutype', $params->get('menutype'));
-        // 	$hidden_parents = array();
-        // 	$lastitem = 0;
-
-        // 	$defaultColor = array(
-        // 	    0 => new StyleObject('#20003f', '#f5f0f1'),
-        // 	    1 => new StyleObject('#2d626c', '#f5f0f1'),
-        // 	    2 => new StyleObject('#9ec0cd', '#161616'),
-        // 	    3 => new StyleObject('#f3e8ea', '#161616'),
-        // 	    4 => new StyleObject('#bcb6c7', '#161616'),
-        //     );
-
-
-        // 	if ($items)
-        // 	{
-        // 		foreach ($items as $i => $item)
-        // 		{
-        // 		    if ($i <= 5) {
-        // 		        $item->style = $defaultColor[$i];
-        //             } else {
-        //                 $item->style = new StyleObject(self::randomColor(), '#161616');
-        //             }
-
-        // 			$item->parent = false;
-
-        // 			if (isset($items[$lastitem]) && $items[$lastitem]->id == $item->parent_id && $item->params->get('menu_show', 1) == 1)
-        // 			{
-        // 				$items[$lastitem]->parent = true;
-        // 			}
-
-        // 			// Exclude item with menu item option set to exclude from menu modules
-        // 			if (($item->params->get('menu_show', 1) == 0) || in_array($item->parent_id, $hidden_parents))
-        // 			{
-        // 				$hidden_parents[] = $item->id;
-        // 				unset($items[$i]);
-        // 				continue;
-        // 			}
-
-        // 			$item->deeper     = false;
-        // 			$item->shallower  = false;
-        // 			$item->level_diff = 0;
-
-        // 			if (isset($items[$lastitem]))
-        // 			{
-        // 				$items[$lastitem]->deeper     = ($item->level > $items[$lastitem]->level);
-        // 				$items[$lastitem]->shallower  = ($item->level < $items[$lastitem]->level);
-        // 				$items[$lastitem]->level_diff = ($items[$lastitem]->level - $item->level);
-        // 			}
-
-        // 			$lastitem     = $i;
-        // 			$item->active = false;
-        // 			$item->flink  = $item->link;
-
-        // 			// Reverted back for CMS version 2.5.6
-        // 			switch ($item->type)
-        // 			{
-        // 				case 'separator':
-        // 					break;
-
-        // 				case 'heading':
-        // 					// No further action needed.
-        // 					break;
-
-        // 				case 'url':
-        // 					if ((strpos($item->link, 'index.php?') === 0) && (strpos($item->link, 'Itemid=') === false))
-        // 					{
-        // 						// If this is an internal Joomla link, ensure the Itemid is set.
-        // 						$item->flink = $item->link . '&Itemid=' . $item->id;
-        // 					}
-        // 					break;
-
-        // 				case 'alias':
-        // 					$item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
-        // 					break;
-
-        // 				default:
-        // 					$item->flink = 'index.php?Itemid=' . $item->id;
-        // 					break;
-        // 			}
-
-        // 			if ((strpos($item->flink, 'index.php?') !== false) && strcasecmp(substr($item->flink, 0, 4), 'http'))
-        // 			{
-        // 				$item->flink = JRoute::_($item->flink, true, $item->params->get('secure'));
-        // 			}
-        // 			else
-        // 			{
-        // 				$item->flink = JRoute::_($item->flink);
-        // 			}
-
-        // 			// We prevent the double encoding because for some reason the $item is shared for menu modules and we get double encoding
-        // 			// when the cause of that is found the argument should be removed
-        // 			$item->title          = htmlspecialchars($item->title, ENT_COMPAT, 'UTF-8', false);
-        // 			$item->anchor_css     = htmlspecialchars($item->params->get('menu-anchor_css', ''), ENT_COMPAT, 'UTF-8', false);
-        // 			$item->anchor_title   = htmlspecialchars($item->params->get('menu-anchor_title', ''), ENT_COMPAT, 'UTF-8', false);
-        // 			$item->anchor_rel     = htmlspecialchars($item->params->get('menu-anchor_rel', ''), ENT_COMPAT, 'UTF-8', false);
-        // 			$item->menu_image     = $item->params->get('menu_image', '') ?
-        // 				htmlspecialchars($item->params->get('menu_image', ''), ENT_COMPAT, 'UTF-8', false) : '';
-        // 			$item->menu_image_css = htmlspecialchars($item->params->get('menu_image_css', ''), ENT_COMPAT, 'UTF-8', false);
-        // 		}
-
-        // 		if (isset($items[$lastitem]))
-        // 		{
-        // 			$items[$lastitem]->deeper     = ((1 ?: 1) > $items[$lastitem]->level);
-        // 			$items[$lastitem]->shallower  = ((1 ?: 1) < $items[$lastitem]->level);
-        // 			$items[$lastitem]->level_diff = ($items[$lastitem]->level - (1 ?: 1));
-        // 		}
-        // 	}
-
-        // 	$cache->store($items, $key);
-        // }
+        catch (Exception $e) {
+        	$data->title = 'Error';
+        	$data->body = $e->getMessage();
+        }
 
         return $data;
+    }
+
+    private static function getNewsByCategory(&$params)
+    {
+	    $model = JModelLegacy::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
+
+	    // Set application parameters in model
+	    $app       = JFactory::getApplication();
+	    $appParams = $app->getParams();
+	    $model->setState('params', $appParams);
+
+	    // Set the filters based on the module params
+	    $model->setState('list.start', 0);
+	    $model->setState('list.limit', (int) $params->get('count', 5));
+	    $model->setState('filter.published', 1);
+	    $model->setState('filter.archived', 1);
+
+	    // This module does not use tags data
+	    $model->setState('load_tags', false);
+
+	    // Access filter
+	    $access     = !JComponentHelper::getParams('com_content')->get('show_noauth');
+	    $authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
+	    $model->setState('filter.access', $access);
+
+	    // Category filter
+	    $model->setState('filter.category_id', $params->get('catid', array()));
+
+	    // Filter by language
+	    $model->setState('filter.language', $app->getLanguageFilter());
+
+	    // Filer by tag
+	    $model->setState('filter.tag', $params->get('tag'), array());
+
+	    $model->setState('filter.featured', 'show');
+
+	    // Set ordering
+	    $ordering = $params->get('ordering', 'a.publish_up');
+	    $model->setState('list.ordering', $ordering);
+
+	    if (trim($ordering) === 'rand()')
+	    {
+		    $model->setState('list.ordering', JFactory::getDbo()->getQuery(true)->Rand());
+	    }
+	    else
+	    {
+		    $direction = $params->get('direction', 1) ? 'DESC' : 'ASC';
+		    $model->setState('list.direction', $direction);
+		    $model->setState('list.ordering', $ordering);
+	    }
+
+	    // Check if we should trigger additional plugin events
+	    $triggerEvents = $params->get('triggerevents', 1);
+
+	    // Retrieve Content
+	    $items = $model->getItems();
+
+	    foreach ($items as &$item)
+	    {
+		    $item->slug     = $item->id . ':' . $item->alias;
+
+		    $item->catslug  = $item->catid . ':' . $item->category_alias;
+
+		    if ($access || in_array($item->access, $authorised))
+		    {
+			    // We know that user has the privilege to view the article
+			    $item->link     = JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid, $item->language));
+		    }
+		    else
+		    {
+			    $item->link = new JUri(JRoute::_('index.php?option=com_users&view=login', false));
+			    $item->link->setVar('return', base64_encode(ContentHelperRoute::getArticleRoute($item->slug, $item->catid, $item->language)));
+		    }
+
+
+		    $item->introtext = JHtml::_('content.prepare', $item->introtext, '', 'mod_block_wrapper.content');
+//
+//		    if (!$params->get('image'))
+//		    {
+		    $item->introtext = preg_replace('/<img[^>]*>/', '', $item->introtext);
+//		    }
+//
+//		    if ($triggerEvents)
+//		    {
+//			    $item->text = '';
+//			    $app->triggerEvent('onContentPrepare', array ('com_content.article', &$item, &$params, 0));
+//
+//			    $results                 = $app->triggerEvent('onContentAfterTitle', array('com_content.article', &$item, &$params, 0));
+//			    $item->afterDisplayTitle = trim(implode("\n", $results));
+//
+//			    $results                    = $app->triggerEvent('onContentBeforeDisplay', array('com_content.article', &$item, &$params, 0));
+//			    $item->beforeDisplayContent = trim(implode("\n", $results));
+//
+//			    $results                   = $app->triggerEvent('onContentAfterDisplay', array('com_content.article', &$item, &$params, 0));
+//			    $item->afterDisplayContent = trim(implode("\n", $results));
+//		    }
+//		    else
+//		    {
+			    $item->afterDisplayTitle    = '';
+			    $item->beforeDisplayContent = '';
+			    $item->afterDisplayContent  = '';
+//		    }
+	    }
+
+	    return $items;
     }
 }

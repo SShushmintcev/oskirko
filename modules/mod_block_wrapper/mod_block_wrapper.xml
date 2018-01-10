@@ -12,8 +12,10 @@
         <filename>index.html</filename>
         <filename>helper.php</filename>
         <filename>tmpl/default.php</filename>
+        <filename>tmpl/news.php</filename>
         <filename>tmpl/index.html</filename>
         <filename>rules/isArticle.php</filename>
+        <filename>rules/catRequired.php</filename>
         <filename>rules/index.html</filename>
     </files>
 
@@ -39,6 +41,19 @@
     <config>
     <fields name="params">
         <fieldset name="basic" addrulepath="modules/mod_block_wrapper/rules">
+
+            <field
+                    name="title"
+                    type="radio"
+                    label="MOD_BLOCK_WRAPPER_TITLE"
+                    description="MOD_BLOCK_WRAPPER_TITLE_DESC"
+                    class="btn-group btn-group-yesno"
+                    default="1"
+            >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
             <field name="width" 
                 type="number" 
                 default="300" 
@@ -71,14 +86,39 @@
                 default="5"
             />
 
-            <field name="catid"
-            type="category"
-            extension="com_content"
-            showon="selecttype:1"
-            default=""
-            required="true"
-            label="MOD_BLOCK_WRAPPER_CATEGORY"
-            description="MOD_BLOCK_WRAPPER_CATEGORY_DESC" />
+            <field
+                    name="catid"
+                    type="category"
+                    label="MOD_BLOCK_WRAPPER_CATEGORY"
+                    description="MOD_BLOCK_WRAPPER_CATEGORY_DESC"
+                    extension="com_content"
+                    multiple="true"
+                    validate="catRequired"
+                    showon="selecttype:1"
+                    class="multipleCategories"
+                    default=""
+                    size="10"
+            />
+
+            <field
+                    name="footer"
+                    type="radio"
+                    label="MOD_BLOCK_WRAPPER_FOOTER"
+                    description="MOD_BLOCK_WRAPPER_FOOTER_DESC"
+                    class="btn-group btn-group-yesno"
+                    default="0"
+            >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+            <field
+                    name="all_list"
+                    type="text"
+                    label="MOD_BLOCK_WRAPPER_FOOTER_LINK"
+                    description="MOD_BLOCK_WRAPPER_FOOTER_LINK_DESC"
+                    showon="footer:1"
+            />
 
             <field name="article" 
                 type="number" 
@@ -96,6 +136,32 @@
                 <option value="0">Light</option>
                 <option value="1">Dark</option>
             </field>
+
+            <field
+                    name="direction"
+                    type="list"
+                    label="Направление"
+                    showon="selecttype:1"
+                    description="Направление сортировки. По убыванию - от большего значения к меньшему. По возрастанию - от меньшего значение к большему"
+                    default="1"
+            >
+                <option value="0">Ascending</option>
+                <option value="1">Descending</option>
+            </field>
+
+            <field
+                    name="article_link"
+                    type="radio"
+                    label="MOD_BLOCK_WRAPPER_ARTICLE_LINK"
+                    description="MOD_BLOCK_WRAPPER_ARTICLE_LINK_DESC"
+                    class="btn-group btn-group-yesno"
+                    default="1"
+            >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+
+
         </fieldset>
         <fieldset name="advanced">
             <field

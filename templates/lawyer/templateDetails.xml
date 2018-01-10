@@ -29,9 +29,13 @@
 		<position>body</position>
 		<position>main-menu</position>
 		<position>main-video</position>
-		<position>news</position>
+		<position>right</position>
 		<position>lang</position>
 		<position>side-menu</position>
+		<position>bottom</position>
+		<position>bottom-left</position>
+		<position>bottom-center</position>
+		<position>bottom-right</position>
 
 
 		<position>position-0</position>

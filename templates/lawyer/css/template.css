@@ -19,6 +19,24 @@ body {
     line-height: 20px;
 }
 
+::-webkit-scrollbar
+{
+    width: 8px;  /* for vertical scrollbars */
+    height: 8px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background: rgba(32, 0, 63, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: rgba(32, 0, 63, 0.8);
+    border-radius: 10px;
+}
+
 iframe {
     border: none !important;
 }
@@ -156,10 +174,22 @@ ul.g-list li {
     word-wrap: break-word;
 }
 
+#lContent {
+    min-height: 450px;
+}
+
+.lc-content {
+    position: relative;
+    padding: 0;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    box-shadow: -1px 5px 9px -1px rgba(0, 0, 0, 0.23);
+}
+
 .l-main-menu {
     padding-bottom: 24px;
     height: 50px;
-    border: 1px solid #000000;
+    /*border: 1px solid #000000;*/
     font-family: Verdana, Geneva, sans-serif;
     font-size: 0.75em;
     color: black;
@@ -188,42 +218,6 @@ ul.g-list li {
     color: #f6f6f6;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-#lContent {
-    min-height: 450px;
-}
-
-.c-left-cont {
-    width: 120px;
-    overflow: hidden;
-}
-
-.c-center-cont {
-    width: 540px;
-    height: 410px;
-    overflow: hidden;
-}
-
-.c-center-cont > div {
-    margin: 0px 17px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.c-right-cont {
-    width: 300px;
-    overflow: hidden;
-}
-
 .side-menu > li {
     text-align: center;
     height: 82px;
@@ -248,9 +242,62 @@ ul.g-list li {
     position: relative;
 }
 
+.c-left-cont {
+    width: 120px;
+    overflow: hidden;
+}
 
+/*.c-left-cont>.block-wrapper>.block-wrapper-title,.block-wrapper-body,.block-wrapper-footer {*/
+    /*border-right: 0px !important;*/
+/*}*/
 
+.c-center-cont {
+    width: 540px;
+    height: 410px;
+    overflow: hidden;
+}
 
+.c-center-cont > div {
+    margin: 0px 17px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.c-right-cont {
+    width: 300px;
+    overflow: hidden;
+}
+
+/*.c-right-cont>.block-wrapper>.block-wrapper-title,.block-wrapper-body,.block-wrapper-footer {*/
+    /*border-right: 0px !important;*/
+/*}*/
+
+.l-cont-head {
+     position: relative;
+     display: block;
+    margin-bottom: 25px;
+ }
+
+.l-cont-body {
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.l-cont-footer {
+    position: relative;
+    display: block;
+    margin-top: 20px;
+}
+
+/*.l-cont-footer>.block-wrapper>.block-wrapper-title,.block-wrapper-body,.block-wrapper-footer {*/
+    /*border-right: 0px !important;*/
+    /*border-left: 0px !important;*/
+/*}*/
+
+.c-bot-center-cont {
+    margin-left: 7px;
+    margin-right: 7px;
+}
 
 
 

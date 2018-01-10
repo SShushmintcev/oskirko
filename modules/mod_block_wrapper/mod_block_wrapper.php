@@ -11,4 +11,15 @@ $document->addStyleSheet("/media/" . $app->scope. "/css/blockWrapper.css");
 
 $data = ModBlockWrapper::getData($params);
 
-require JModuleHelper::getLayoutPath('mod_block_wrapper');
+$type = $params->get('selecttype');
+
+$showFooter = $params->get('footer') === "1";
+$footerUrl = $params->get('all_list');
+
+$showTitle = $params->get('title') === "1";
+
+$showArticleLink = $params->get('article_link') === '1';
+
+$layout = $data->type === '1' ? 'news' : 'default';
+
+require JModuleHelper::getLayoutPath('mod_block_wrapper', $layout);
