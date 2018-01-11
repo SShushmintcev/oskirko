@@ -25,9 +25,7 @@ $blockHeight  = $data->height + 140;
 //}
 ?>
 
-<div class="block-wrapper block-wrapper-<?php echo $data->style ?>"
-     style="width: <?php echo $data->width ?>px;">
-    <!--     style="width: --><?php //echo $data->width ?><!--px; height: --><?php //echo $blockHeight ?><!--px;">-->
+<div class="block-wrapper block-wrapper-<?php echo $data->style ?>" style="width: <?php echo $data->width ?>px;">
     <div class="block-wrapper-title-line"></div>
     <div class="block-wrapper-title wrapper-title-<?php echo $data->style ?>">
         <div class="block-wrapper-check wrapper-check-<?php echo $data->style ?>"></div>
@@ -38,15 +36,15 @@ $blockHeight  = $data->height + 140;
 		<?php } ?>
     </div>
     <div class="block-wrapper-body block-wrapper-body-<?php echo $data->style ?>"
-         style="height: <?php echo $BWBodyHeight ?>px">
-        <div class="block-wrapper-body-content" style="height: <?php echo $BWBodyHeight - 10 ?>px; overflow-y: auto;">
-            <ul class="bw-news">
+         style="height: <?php echo $BWBodyHeight ?>px; overflow-y: auto;">
+        <div class="block-wrapper-body-content">
+            <ul class="bw-list">
 				<?php foreach ($data->body as $item) : ?>
-                    <li class="bw-news-item">
-                        <div class="bw-news-item-date">
+                    <li class="bw-list-item">
+                        <div class="bw-list-item-date">
 							<?php echo JHtml::_('date', $item->publish_up, 'd F Y'); ?>
                         </div>
-                        <div class="bw-news-item-content">
+                        <div class="bw-list-item-content">
 							<span>
                                 <?php
                                 $cont = '';
@@ -89,6 +87,7 @@ $blockHeight  = $data->height + 140;
     </div>
 
     <div class="block-wrapper-footer bw-footer-<?php echo $data->style ?>">
+        <div style="padding-top: 10px;"></div>
 		<?php if ($showFooter) { ?>
             <div class="bw-footer-content">
                 <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo JText::_('MOD_BLOCK_WRAPPER_FOOTER_LINK_ALL'); ?>
