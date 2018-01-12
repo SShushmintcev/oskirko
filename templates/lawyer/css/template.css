@@ -19,6 +19,10 @@ body {
     line-height: 20px;
 }
 
+body {
+    position: relative;
+}
+
 ::-webkit-scrollbar
 {
     width: 8px;  /* for vertical scrollbars */
@@ -42,12 +46,13 @@ iframe {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
 a:hover {
     color: #2d626c;
+    text-decoration: none !important;
 }
 
 article,
@@ -76,10 +81,6 @@ li {
 
 ul {
     list-style-type: none;
-}
-
-li {
-    margin-bottom: 10px;
 }
 
 li::before { /* the custom styled bullets */
@@ -124,7 +125,7 @@ ul.g-list li::before {
 }
 
 .none {
-    display: none;
+    display: none !important;
 }
 
 .block {
@@ -135,6 +136,7 @@ ul.g-list li::before {
     color: #ffffff;
     height: 140px;
     position: relative;
+    display: block;
     background-image: url(../img/lHeader.png);
 }
 
@@ -199,6 +201,8 @@ ul.g-list li::before {
 
 #lContent {
     min-height: 450px;
+    position: relative;
+    display: block;
 }
 
 .lc-content {
@@ -212,37 +216,119 @@ ul.g-list li::before {
 .l-main-menu {
     margin-bottom: 24px;
     height: 50px;
-    border: 1px solid #000000;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 0.75em;
     color: black;
+    position: relative;
 }
 
-.l-main-menu > .menu {
-    line-height: 50px;
-    display: block;
+.nav {
+ margin-bottom: 0 !important;
 }
 
-.l-main-menu > .menu > li {
+.main-menu {
+    width:100%;
+    position: relative;
+}
+
+.main-menu li::before {
+content: none;
+}
+
+.main-menu li{
     float: left;
     position: relative;
     display: block;
-    margin: 0;
 }
 
-.l-main-menu > .menu > li::before {
-    content: none;
-}
-
-.l-main-menu > .menu > li > a {
+.main-menu a {
     position: relative;
-    padding: 17px 30px;
+    text-decoration:none;
+    display:block;
+    padding: 15px 30px;
 }
 
-.l-main-menu > .menu > li > a:hover {
+.main-menu li.active, .main-menu li:hover > a{
     background: #190032;
     color: #f6f6f6;
 }
+
+.main-menu ul {
+    visibility:hidden;
+    color: #f6f6f6;
+    background: #190032;
+    padding:0;
+    width:100%;
+    position:absolute;
+    z-index:4;
+}
+
+.main-menu li:hover > ul{
+    visibility:visible;
+}
+
+.main-menu ul li{
+    float:none;
+    margin:0;
+}
+
+.main-menu ul ul{
+    left:145px;
+    top: 8px;
+    z-index:5;
+}
+
+.main-menu ul li:hover > a{
+    background: #190032;
+    color: #f6f6f6;
+    text-decoration:underline;
+}
+
+
+.left-child-menu {
+    position: relative;
+    margin-bottom: 30px !important;
+    border-right: 1px solid #e5e5e5;
+    min-height: 300px;
+    text-align: right;
+    padding-right: 10px;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 0.75em;
+}
+
+.left-child-menu li::before {
+    content: none;
+}
+
+.left-child-menu li.active {
+    color: #2d626c;
+}
+
+.left-child-menu li:hover > a{
+    background: none;
+}
+
+.left-child-menu li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .side-menu > li {
     margin: 0;
@@ -280,13 +366,25 @@ ul.g-list li::before {
 
 .c-center-cont {
     width: 540px;
+    position: relative;
+    padding-bottom: 35px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.c-center-cont-fix {
     height: 410px;
     overflow: hidden;
+    padding-bottom: 0 !important;
+}
+
+.c-center-cont-fix > div {
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .c-center-cont > div {
     margin: 0px 17px;
-    border-bottom: 1px solid #e5e5e5;
+
 }
 
 .c-right-cont {
@@ -295,10 +393,13 @@ ul.g-list li::before {
 }
 
 .l-cont-head {
-     position: relative;
-     display: block;
-    margin-bottom: 25px;
+    position: relative;
+    display: block;
  }
+
+.l-cont-head-home {
+    margin-bottom: 25px;
+}
 
 .l-cont-body {
     position: relative;
@@ -317,37 +418,27 @@ ul.g-list li::before {
     margin-right: 7px;
 }
 
+.page-header {
+    color: #2d626c;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size: 11.8pt;
+    font-style: normal;
+    font-variant: normal;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.page-header>h2 {
+    font-size: 11.8pt !important;
+    margin-top: 0 !important;
+    font-weight: normal;
+    text-transform: uppercase;
+}
 
 
 #lFooter {
     background: rgba(29, 29, 29, 0.92);
     /* color: #000000; */
+    position: relative;
+    display: block;
 }
 
 .l-footer {
@@ -355,17 +446,6 @@ ul.g-list li::before {
     color: #8a8a8a;
     text-shadow: 0 0 1px #79787882;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .l-footer-law {
     background-image: url(../img/headerLaw.png);
@@ -482,7 +562,12 @@ ul.g-list li::before {
 }
 
 .foot-menu > li>a {
-    line-height: 47px;
+    line-height: 40px;
+}
+
+.foot-menu > li>a:hover {
+    background: none !important;
+    text-shadow: none;
 }
 
 .l-foot-left {

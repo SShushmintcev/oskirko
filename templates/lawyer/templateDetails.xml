@@ -30,25 +30,22 @@
 		<position>main-menu</position>
 		<position>main-video</position>
 		<position>right</position>
+		<position>left-side</position>
 		<position>lang</position>
-		<position>side-menu</position>
+		<position>wrapper-menu</position>
 		<position>bottom</position>
 		<position>bottom-left</position>
 		<position>bottom-center</position>
 		<position>bottom-right</position>
 		<position>footer</position>
-
-		<position>position-0</position>
+		<position>search</position>
+		<position>letter</position>
+		<position>breadcrumbs</position>
 		<position>position-1</position>
 		<position>position-2</position>
 		<position>position-3</position>
 		<position>position-4</position>
 		<position>position-5</position>
-		<position>position-6</position>
-		<position>position-7</position>
-		<position>position-8</position>
-		<position>position-9</position>
-
 	</positions>
 	<languages folder="language">
 		<language tag="ru-RU">ru-RU/ru-RU.tpl_lawyer.ini</language>
@@ -56,86 +53,19 @@
 		<language tag="en-US">en-US/en-US.tpl_lawyer.ini</language>
 		<language tag="en-US">en-US/en-US.tpl_lawyer.sys.ini</language>
 	</languages>
+
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
-				<field 
-					name="templateColor" 
-					type="color" 
-					label="TPL_LAWYER_COLOR_LABEL"
-					description="TPL_LAWYER_COLOR_DESC" 
-					class="" 
-					default="#08C"
-				/>
-
-				<field 
-					name="templateBackgroundColor" 
-					type="color" 
-					label="TPL_LAWYER_BACKGROUND_COLOR_LABEL"
-					description="TPL_LAWYER_BACKGROUND_COLOR_DESC" 
-					class="" 
-					default="#F4F6F7"
-				/>
-
-				<field 
-					name="logoFile" 
-					type="media" 
-					label="TPL_LAWYER_LOGO_LABEL"
-					description="TPL_LAWYER_LOGO_DESC" 
-					class="" 
-					default=""
-				/>
-
-				<field 
-					name="sitetitle"  
-					type="text" 
-					label="JGLOBAL_TITLE"
-					description="JFIELD_ALT_PAGE_TITLE_LABEL"
-					default=""
-					filter="string" 
-				/>
-
-				<field 
-					name="sitedescription"  
-					type="text" 
-					label="JGLOBAL_DESCRIPTION"
-					description="JGLOBAL_SUBHEADING_DESC"
-					default=""
-					filter="string" 
-				/>
-
-				<field 
-					name="googleFont"
-					type="radio"
-					label="TPL_LAWYER_FONT_LABEL"
-					description="TPL_LAWYER_FONT_DESC"
-					class="btn-group btn-group-yesno"
-					default="1"
-					>
+				<field
+						name="show-wrap-menu"
+						type="radio"
+						label="TPL_LAWYER_SHOW_WRAP_MENU"
+						description="TPL_LAWYER_SHOW_WRAP_MENU_DESC"
+						default="1"
+				>
 					<option value="1">JYES</option>
 					<option value="0">JNO</option>
-				</field>
-
-				<field 
-					name="googleFontName" 
-					type="text" 
-					label="TPL_LAWYER_FONT_NAME_LABEL"
-					description="TPL_LAWYER_FONT_NAME_DESC" 
-					class="" 
-					default="Open+Sans"
-					showon="googleFont:1" 
-				/>
-
-				<field 
-					name="fluidContainer"
-					type="radio"
-					label="TPL_LAWYER_FLUID_LABEL"
-					description="TPL_LAWYER_FLUID_DESC"
-					class="btn-group btn-group-yesno"
-					default="0"
-					>
-					<option value="1">TPL_LAWYER_FLUID</option>
-					<option value="0">TPL_LAWYER_STATIC</option>
 				</field>
 			</fieldset>
 		</fields>
