@@ -22,7 +22,8 @@
 		<folder>language</folder>
 		<folder>less</folder>
 		<folder>scripts</folder>
-		<folder>components</folder>	
+		<folder>components</folder>
+		<folder>html</folder>
 	</files>
 	<positions>
 		<position>header-body</position>
@@ -38,6 +39,7 @@
 		<position>bottom-center</position>
 		<position>bottom-right</position>
 		<position>footer</position>
+		<position>footer-contacts</position>
 		<position>search</position>
 		<position>letter</position>
 		<position>breadcrumbs</position>
@@ -53,21 +55,4 @@
 		<language tag="en-US">en-US/en-US.tpl_lawyer.ini</language>
 		<language tag="en-US">en-US/en-US.tpl_lawyer.sys.ini</language>
 	</languages>
-
-	<config>
-		<fields name="params">
-			<fieldset name="advanced">
-				<field
-						name="show-wrap-menu"
-						type="radio"
-						label="TPL_LAWYER_SHOW_WRAP_MENU"
-						description="TPL_LAWYER_SHOW_WRAP_MENU_DESC"
-						default="1"
-				>
-					<option value="1">JYES</option>
-					<option value="0">JNO</option>
-				</field>
-			</fieldset>
-		</fields>
-	</config>
 </extension>

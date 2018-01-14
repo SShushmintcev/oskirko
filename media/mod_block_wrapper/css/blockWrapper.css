@@ -88,11 +88,28 @@
     overflow: hidden;
     word-wrap: break-word;
     word-break: break-all;
+    font-size: 14px;
+}
+
+.block-wrapper-body-content ul li{
+    margin-bottom: 20px;
+}
+
+.block-wrapper-body-content ul li:last-child{
+    margin-bottom: 0;
 }
 
 .block-wrapper-body-content>p {
     margin: 0;
     display: flex;
+}
+
+.arrow-lft {
+    background-image: url(../arrow-lft.png);
+    width: 12px;
+    height: 7px;
+    display: inline-block;
+    margin-bottom: 2px;
 }
 
 .bw-list-item-content > span >p {
@@ -105,7 +122,14 @@
 }
 
 .bw-list-item-date {
-    margin-bottom: 7px;
+    margin-bottom: 10px;
+    color: #949697;
+    font-size: 15px;
+}
+
+.bw-list li {
+    line-height: 14px;
+    margin-bottom: 25px !important;
 }
 
 .bw-list li::before {
@@ -134,9 +158,10 @@
     text-align: center;
     position: relative;
     top: 5px;
+    font-size: 13px;
 }
 
 .bw-footer-content>a {
-    padding: 0 5px 2px 5px;
+    padding: 0 5px 4px 5px;
     background: #e5e5e5;
 }

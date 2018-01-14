@@ -24,6 +24,12 @@
         <filename>ru-RU.mod_wrap_menu.ini</filename>
         <filename>ru-RU.mod_wrap_menu.sys.ini</filename>
     </files>
+
+    <media folder="media" destination="mod_wrap_menu">
+        <folder>css</folder>
+        <folder>js</folder>
+    </media>
+
     <languages>
 		<language tag="en-GB">en-GB.mod_wrap_menu.ini</language>
 		<language tag="en-GB">en-GB.mod_wrap_menu.sys.ini</language>
@@ -41,7 +47,18 @@
                     label="MOD_WRAP_MENU_FIELD_MENUTYPE_LABEL"
                     description="MOD_WRAP_MENU_FIELD_MENUTYPE_DESC"
                     clientid="0"
-                />            
+                />
+            <field
+                    name="preview"
+                    type="radio"
+                    label="MOD_WRAP_MENU_PREVIEW"
+                    description="MOD_WRAP_MENU_PREVIEW_DESC"
+                    class="btn-group btn-group-yesno"
+                    default="0"
+            >
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
         </fieldset>    
     </fields>
     </config>

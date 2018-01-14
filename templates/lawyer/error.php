@@ -1,10 +1,10 @@
 <?php
 
-defined('_JEXEC') or die( 'Restricted access' );
+defined('_JEXEC') or die('Restricted access');
 
-$app        = JFactory::getApplication();
-$date       = JFactory::getDate();
-$cur_year   = JHtml::_('date', $date, 'Y');
+$app = JFactory::getApplication();
+$date = JFactory::getDate();
+$cur_year = JHtml::_('date', $date, 'Y');
 
 $templatePath = $this->baseurl . '/templates/' . $this->template;
 
@@ -54,8 +54,24 @@ $params = $app->getTemplate(true)->params;
     <div class="lc-content l-container" style="min-height: 250px;">
         <div class="l-content" style="text-align: center;">
             <h2 style="margin: 0px; padding: 25px 0 25px 0;">
-				<?php echo $this->error->getCode(); ?>&nbsp;
-				<?php echo JText::_('JERROR_LAYOUT_PAGE_NOT_FOUND'); ?>
+
+                <?php
+
+                $message_text = '';
+
+                switch ($this->error->getCode()) {
+                    case 0:
+                        $message_text = JText::_('JERROR_ALERTNOTEMPLATE');
+                        break;
+                    case 404:
+                        $message_text = JText::_('JERROR_LAYOUT_PAGE_NOT_FOUND');
+                        break;
+                    default:
+                        $message_text = JText::_('JERROR_ERROR');
+                }
+                ?>
+                <?php echo $this->error->getCode(); ?>&nbsp;
+                <?php echo $message_text; ?>
             </h2>
             <a href="<?php echo $this->baseurl; ?>/index.php"><?php echo Jtext::_('JERROR_LAYOUT_GO_TO_THE_HOME_PAGE') ?></a>
         </div>

@@ -30,6 +30,8 @@ $menu = $app->getMenu();
 $lang = JFactory::getLanguage();
 $is_home_page = $menu->getActive() == $menu->getDefault($lang->getTag());
 
+$isLeftSide = !!$this->getBuffer('modules','left-side');
+
 // Add JavaScript Frameworks
 JHtml::_('bootstrap.framework');
 
@@ -58,8 +60,8 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
     <jdoc:include type="head"/>
 </head>
 <body>
-
 <div id="wrapper">
+
     <div id="lHeader">
         <div class="l-header l-container">
             <div class="l-header-logo left">
@@ -77,12 +79,16 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                 <div class="left h-body-container">
                     <jdoc:include type="modules" name="header-body"/>
                 </div>
-                <div class="left">
-                    <jdoc:include type="modules" name="search"/>
-                </div>
-                <div class="left">
-                    <jdoc:include type="modules" name="letter"/>
-                    letter
+                <div class="left h-body-command">
+                    <div class="left">
+                        <jdoc:include type="modules" name="search"/>
+                    </div>
+                    <div class="left">
+                        <!--<jdoc:include type="modules" name="letter"/>-->
+                        <a href="/index.php/component/mailto/?tmpl=component&amp;template=lawyer&amp;link=ee10c040a13a577f18f9075a254cf695ac623f55" title="Отправить ссылку другу" onclick="window.open(this.href,'win2','width=400,height=350,menubar=yes,resizable=yes'); return false;" rel="nofollow">
+                            <input id="searchButton" type="image" src="<?php echo $imgPath . 'letter.png' ?>" /></a>
+                    </div>
+                    <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
             </div>
@@ -100,50 +106,56 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
             <div class="l-content">
                 <div class="l-cont-head <?php echo $is_home_page ? 'l-cont-head-home' : ''; ?>">
                     <div class="left c-left-cont">
-						<?php if ($is_home_page) { ?>
+                        <?php if ($is_home_page) { ?>
                             <jdoc:include type="modules" name="wrapper-menu"/>
-						<?php } else { ?>
+                        <?php } else { ?>
                             <jdoc:include type="modules" name="left-side"/>
 
-                            <?php if ($showWrapMenu) { ?>
+                            <?php if (!$isLeftSide) { ?>
                                 <jdoc:include type="modules" name="wrapper-menu"/>
                             <?php } ?>
 
                             <jdoc:include type="modules" name="position-1"/>
-						<?php } ?>
+                        <?php } ?>
                     </div>
                     <div class="left c-center-cont <?php echo $is_home_page ? 'c-center-cont-fix' : ''; ?>">
                         <div class="c-center-body">
-							<?php if ($is_home_page) { ?>
+                            <?php if ($is_home_page) { ?>
                                 <jdoc:include type="modules" name="main-video"/>
                                 <div>
                                     urls
                                 </div>
-							<?php } else { ?>
-                                <jdoc:include type="component" />
-							<?php } ?>
+                            <?php } else { ?>
+                                <jdoc:include type="modules" name="breadcrumbs"/>
+                                <jdoc:include type="component"/>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="left c-right-cont">
                         <jdoc:include type="modules" name="right"/>
-
-						<?php if (!$is_home_page) { ?>
+                        <?php if (!$is_home_page) { ?>
                             <jdoc:include type="modules" name="position-2"/>
-						<?php } ?>
+                        <?php } ?>
                     </div>
                     <div class="clear"></div>
                 </div>
-				<?php if ($is_home_page) { ?>
+                <?php if ($is_home_page) { ?>
                     <div class="l-cont-body">
-                        <div class="left c-bot-left-cont"><jdoc:include type="modules" name="bottom-left"/></div>
-                        <div class="left c-bot-center-cont"><jdoc:include type="modules" name="bottom-center"/></div>
-                        <div class="left c-bot-right-cont"><jdoc:include type="modules" name="bottom-right"/></div>
+                        <div class="left c-bot-left-cont">
+                            <jdoc:include type="modules" name="bottom-left"/>
+                        </div>
+                        <div class="left c-bot-center-cont">
+                            <jdoc:include type="modules" name="bottom-center"/>
+                        </div>
+                        <div class="left c-bot-right-cont">
+                            <jdoc:include type="modules" name="bottom-right"/>
+                        </div>
                         <div class="clear"></div>
                     </div>
                     <div class="l-cont-footer">
                         <jdoc:include type="modules" name="bottom"/>
                     </div>
-				<?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -155,7 +167,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                     <div class="l-footer-back"></div>
                     <div class="l-footer-logo left">
                         <a href="<?php echo $this->baseurl ?>">
-                            <img src="<?php echo $imgPath . 'logo.png' ?>" width="97" height="68"/>
+                            <img src="<?php echo $imgPath . 'logo-footer.png' ?>" width="72" height="59"/>
                         </a>
                     </div>
                     <div class="l-footer-title left l-footer-top">
@@ -165,13 +177,19 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                                 <span class="block f-cons"><?php echo JText::_('TPL_LAWEYR_CONSULTATION'); ?></span>
                             </a>
                         </div>
-                        <div class="lf-text lf-text-p"><span class="block"><?php echo JText::_('TPL_LAWYER_PALATA'); ?></span></div>
-                        <div class="lf-text lf-text-c"><span class="block"><?php echo JText::_('TPL_LAWYER_CITY_PALATA'); ?></span></div>
+                        <div class="lf-text lf-text-p"><span
+                                    class="block"><?php echo JText::_('TPL_LAWYER_PALATA'); ?></span></div>
+                        <div class="lf-text lf-text-c"><span
+                                    class="block"><?php echo JText::_('TPL_LAWYER_CITY_PALATA'); ?></span></div>
                     </div>
                     <div class="clear"></div>
                 </div>
-                <div class="left l-footer-top l-foot-center"><jdoc:include type="modules" name="footer" style="" /></div>
-                <div class="left l-footer-top l-foot-right">contacts</div>
+                <div class="left l-footer-top l-foot-center">
+                    <jdoc:include type="modules" name="footer"/>
+                </div>
+                <div class="left l-footer-top l-foot-right">
+                    <jdoc:include type="modules" name="footer-contacts"/>
+                </div>
                 <div class="clear"></div>
             </div>
 
@@ -191,27 +209,16 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
             </div>
         </div>
     </div>
-
 </div>
 
-<!--<script type="text/javascript">-->
-<!--    jQuery(document).ready(function($){-->
-<!--        // function menu(){-->
-<!--        //     $('.navbar-nav .parent').addClass('dropdown');-->
-<!--        //     $('.navbar-nav .parent > a').addClass('dropdown-toggle');-->
-<!--        //     $('.navbar-nav .parent > a').attr('href', '#');-->
-<!--        //     $('.navbar-nav .parent > a').attr('data-toggle', 'dropdown');-->
-<!--        //     $('.navbar-nav .parent > a').append(' ', '<span class="caret"></span>');-->
-<!--        //     $('.navbar-nav .parent > ul').addClass('dropdown-menu');-->
-<!--        // }-->
-<!--        // menu();-->
-<!---->
-<!--        // $ ('.parent > a').attr('data-toggle', 'dropdown');-->
-<!--        // $('.parent').addClass('dropdown');-->
-<!--        // // $('.parent > a').append('<b class="caret"></b>');-->
-<!--        // $('.parent > ul').addClass('dropdown-menu');-->
-<!--    });-->
-<!--</script>-->
+<!--<div id="myModal" class="my-modal">-->
 
+    <!-- Modal content -->
+<!--    <div class="modal-content">-->
+<!--        <span class="close">&times;</span>-->
+<!--        <p>Some text in the Modal..</p>-->
+<!--    </div>-->
+
+<!--</div>-->
 </body>
 </html>

@@ -2,16 +2,9 @@
 
 defined('_JEXEC') or die;
 
-$id = '';
-
-if ($tagId = $params->get('tag_id', ''))
-{
-    $id = ' id="' . $tagId . '"';
-}
-
 ?>
 
-<ul class="menu style-menu side-menu"<?php echo $id; ?>>
+<ul class="menu style-menu side-menu" id="wrapMenu">
     <?php foreach ($list as $i => &$item)
     {
         $class = 'item-' . $item->id;

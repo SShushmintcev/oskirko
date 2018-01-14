@@ -1,0 +1,32 @@
+.side-menu > li {
+    margin: 0;
+    text-align: center;
+    height: 82px;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size: 11.8pt;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 14.4px;
+}
+
+.side-menu > li::before {
+    content: none;
+}
+
+.side-menu li a {
+    position: relative;
+    padding: 34px 0;
+    /*line-height: 82px;*/
+    display: block;
+}
+
+.side-menu li span {
+    display: block;
+    padding: 27px 0;
+    position: relative;
+}
+
+.side-menu>li>.preview {
+    position: absolute;
+}
