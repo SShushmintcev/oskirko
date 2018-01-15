@@ -121,6 +121,14 @@
                     showon="footer:1"
             />
 
+            <field
+                    name="all_list_text"
+                    type="text"
+                    label="MOD_BLOCK_WRAPPER_FOOTER_LINK_TEXT"
+                    description="MOD_BLOCK_WRAPPER_FOOTER_LINK_TEXT_DESC"
+                    showon="footer:1"
+            />
+
             <field name="article" 
                 type="number" 
                 default=""

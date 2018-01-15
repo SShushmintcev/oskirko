@@ -46,7 +46,7 @@ if (!preg_match("/iframe/", $cont, $existIFRAME, PREG_OFFSET_CAPTURE)) {
         <?php } ?>
     </div>
     <div class="block-wrapper-body block-wrapper-body-<?php echo $data->style ?>"
-         style="overflow-y: hidden; height: <?php echo $BWBodyHeight ?>px">
+         style="height: <?php echo $BWBodyHeight ?>px">
         <div class="block-wrapper-body-content">
             <?php echo html_entity_decode($cont) ?>
             <?php if ($showArticleLink) { ?>
@@ -55,11 +55,14 @@ if (!preg_match("/iframe/", $cont, $existIFRAME, PREG_OFFSET_CAPTURE)) {
         </div>
     </div>
     <div class="block-wrapper-footer bw-footer-<?php echo $data->style ?>">
-        <div style="padding-top: 10px;"></div>
         <?php if ($showFooter) { ?>
             <div class="bw-footer-content">
-                <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo JText::_('MOD_BLOCK_WRAPPER_FOOTER_LINK_ALL'); ?>
-                        &nbsp;<?php echo mb_strtolower($data->title) ?></span></a>
+                <?php if (isset($footerUrlText)) { ?>
+                    <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo $footerUrlText; ?></span></a>
+                <?php } else { ?>
+                    <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo JText::_('MOD_BLOCK_WRAPPER_FOOTER_LINK_ALL'); ?>
+                            &nbsp;<?php echo mb_strtolower($data->title) ?></span></a>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>

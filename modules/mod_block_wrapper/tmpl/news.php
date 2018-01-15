@@ -17,7 +17,7 @@ $blockHeight = $data->height + 140;
         <?php } ?>
     </div>
     <div class="block-wrapper-body block-wrapper-body-<?php echo $data->style ?>"
-         style="height: <?php echo $BWBodyHeight ?>px; overflow-y: hidden;">
+         style="height: <?php echo $BWBodyHeight ?>px;">
         <div class="block-wrapper-body-content">
             <ul class="bw-list">
                 <?php foreach ($data->body as $item) : ?>
@@ -61,11 +61,15 @@ $blockHeight = $data->height + 140;
     </div>
 
     <div class="block-wrapper-footer bw-footer-<?php echo $data->style ?>">
-        <div style="padding-top: 10px;"></div>
         <?php if ($showFooter) { ?>
             <div class="bw-footer-content">
-                <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo JText::_('MOD_BLOCK_WRAPPER_FOOTER_LINK_ALL'); ?>
-                        &nbsp;<?php echo mb_strtolower($data->title) ?></span></a>
+
+                <?php if (isset($footerUrlText)) { ?>
+                    <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo $footerUrlText; ?></span></a>
+                <?php } else { ?>
+                    <a href="<?php echo $document->baseurl . $footerUrl ?>"><span><?php echo JText::_('MOD_BLOCK_WRAPPER_FOOTER_LINK_ALL'); ?>
+                            &nbsp;<?php echo mb_strtolower($data->title) ?></span></a>
+                <?php } ?>
             </div>
         <?php } ?>
     </div>

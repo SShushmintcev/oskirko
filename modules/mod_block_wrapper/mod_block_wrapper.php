@@ -16,6 +16,8 @@ $type = $params->get('selecttype');
 $showFooter = $params->get('footer') === "1";
 $footerUrl = $params->get('all_list');
 
+$footerUrlText = $params->get('all_list_text');
+
 $showTitle = $params->get('title') === "1";
 
 $showArticleLink = $params->get('article_link') === '1';
