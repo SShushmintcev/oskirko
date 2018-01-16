@@ -47,7 +47,7 @@ if ($item->browserNav == 1) {
 }
 
 
-if ($showPreview && isset($item->preview->body)) {
+if ($showPreview && $item->preview->body) {
     echo '<div id='. $item->id .' class="preview" style="display: none" data-title='. $item->preview->title .'>' . $item->preview->body . '</div>';
 }
 

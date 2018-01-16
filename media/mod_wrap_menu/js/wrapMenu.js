@@ -1,11 +1,11 @@
 !(function ($) {
-    var selectorMenu1 = "wrapMenu";
-
     function wrapMenu() {
         this.model = {
             selectorPreview: "preview",
             selectorMenu: "wrapMenu"
         }
+
+        this.popup = null;
     }
 
     wrapMenu.prototype.init = function () {
@@ -14,29 +14,41 @@
     };
 
     wrapMenu.prototype.fnHover = function (e) {
-        // debugger;
         var that = this;
         var target = e.currentTarget;
 
         var preview = null;
-
         for(var i = 0; i < target.children.length; i++){
             var child = target.children[i];
             if (child.className === that.model.selectorPreview){
                 preview = child;
-                console.log('true preview');
             }
         }
 
         if (preview !== null) {
-            var popup = new ui.popup();
-            popup.init();
-        }
+            var parentPosition = $(target.parentElement.parentElement).offset();
+            var targetPosition = $(target).offset();
 
+            var options = {
+                target: target,
+                top: targetPosition.top - parentPosition.top - 10,
+                size: target.offsetWidth + 10,
+                content: preview.innerHTML
+            };
+
+            that.popup = new ui.popup(options);
+            that.popup.show();
+        }
     };
 
-    wrapMenu.prototype.fnOut = function (e) {
-        console.log('out');
+    wrapMenu.prototype.fnOut = function () {
+        var that = this;
+
+        if (that.popup !== null) {
+            that.popup.close();
+
+            that.popup = null;
+        }
     };
 
     ui.view.WrapMenu = wrapMenu;

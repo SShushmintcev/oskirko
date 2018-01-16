@@ -87,19 +87,20 @@ class ModWrapMenu
 
                                 $article = JControllerLegacy::getInstance('Content')->getModel('Article')->getItem($articleId);
 
-                                if (isset($article)) {
-
+                                if ($article) {
                                     $cont = str_replace(array("\r\n", "\r"), "", $article->introtext);
-//                                    $pattern = "/<p ?(.*?)>(.*)<\/p>/";
+
+                                    if($cont){
+//	                                  $pattern = "/<p ?(.*?)>(.*)<\/p>/";
 //                                    $matchResults = null;
 //
 //                                    if (preg_match($pattern, $cont, $matchResults, PREG_OFFSET_CAPTURE)) {
 //                                        $item->preview->body = $matchResults[2][0];
 //                                    } else {
-                                        $item->preview->body = $cont;
+	                                    $item->preview->body = $cont;
 //                                    }
-
-                                    $item->preview->title = $item->title;
+	                                    $item->preview->title = $item->title;
+                                    }
                                 }
                             }
 

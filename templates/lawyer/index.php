@@ -132,9 +132,11 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                         </div>
                     </div>
                     <div class="left c-right-cont">
-                        <jdoc:include type="modules" name="right"/>
-                        <?php if (!$is_home_page) { ?>
-                            <jdoc:include type="modules" name="position-2"/>
+                        <?php if ($is_home_page) { ?>
+                            <jdoc:include type="modules" name="news"/>
+                        <? } else { ?>
+                            <jdoc:include type="modules" name="news"/>
+                            <jdoc:include type="modules" name="right"/>
                         <?php } ?>
                     </div>
                     <div class="clear"></div>

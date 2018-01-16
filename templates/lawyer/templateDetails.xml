@@ -30,6 +30,7 @@
 		<position>body</position>
 		<position>main-menu</position>
 		<position>main-video</position>
+		<position>news</position>
 		<position>right</position>
 		<position>left-side</position>
 		<position>lang</position>
@@ -44,7 +45,6 @@
 		<position>letter</position>
 		<position>breadcrumbs</position>
 		<position>position-1</position>
-		<position>position-2</position>
 		<position>position-3</position>
 		<position>position-4</position>
 		<position>position-5</position>

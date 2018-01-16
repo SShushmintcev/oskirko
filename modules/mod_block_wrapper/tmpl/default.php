@@ -13,7 +13,7 @@ $BWBodyHeight = $data->height;
 $blockHeight = $data->height + 136;
 
 $cont = str_replace(array("\r\n", "\r"), "", $cont);
-//$pattern = "/<p ?(.*?)>(.*)<\/p>/";
+//$pattern = "/<p\s?(.*?)>(.*?)<\/p>/";
 //$matches = null;
 //;
 //
