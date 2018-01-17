@@ -5,11 +5,23 @@
 	<creationDate>Jun 2018</creationDate>
 	<authorEmail>small85@mail.ru</authorEmail>
 	<version>1.0</version>
-	<description>Плагин оборачивает код в тег для передачи в popup</description>
+	<description>
+		Загружает содержимое (код/текст) в popup (синтаксис: {custompopup id="'id блока'"}'содержимое'{/custompopup}).
+		Для правильной работы требуется указать id, а также задать class="popup-show" на элементе над котором будет показываться popup.
+		Далее разместить содержимое в синтаксис {custompopup id="'id блока'"}'содержимое'{/custompopup},
+		где указывается id того элемента описанного раньше.
+		Пример: Вы вставили картинку, зайдите в ее свойства и укажите id="1", а также class="popup-show". Запомните id!
+		Далее Вы хотите чтобы текст показывался при наведении мышкой на картинку в popup.
+		Ниже в редакторе пишите {custompopup id="1"}Это будет отображаться в popup{/custompopup}.
+		ВНИМАНИЕ: id не должны повторяться.
+		Если указали на элементе id="1" и в синтаксиса {custompopup id="1"}, то следующий элемент должен иметь новый id и class="popup-show"
+		Сохраняете документ и смотрите результат.
+		</description>
 	<files>
 		<filename plugin="custompopup">custompopup.php</filename>
 		<filename>custompopup.xml</filename>
 		<filename>index.html</filename>
+		<folder>tmpl</folder>
 	</files>
 	<config>
 		<fields name="params">

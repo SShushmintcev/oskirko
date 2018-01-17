@@ -212,15 +212,5 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
         </div>
     </div>
 </div>
-
-<!--<div id="myModal" class="my-modal">-->
-
-    <!-- Modal content -->
-<!--    <div class="modal-content">-->
-<!--        <span class="close">&times;</span>-->
-<!--        <p>Some text in the Modal..</p>-->
-<!--    </div>-->
-
-<!--</div>-->
 </body>
 </html>

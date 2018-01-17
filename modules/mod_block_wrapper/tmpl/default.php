@@ -13,26 +13,26 @@ $BWBodyHeight = $data->height;
 $blockHeight = $data->height + 136;
 
 $cont = str_replace(array("\r\n", "\r"), "", $cont);
-//$pattern = "/<p\s?(.*?)>(.*?)<\/p>/";
-//$matches = null;
-//;
-//
-//if (preg_match($pattern, $cont, $matches, PREG_OFFSET_CAPTURE)) {
-//    $cont = $matches[2][0];
-//}
+$pattern = "/<p\s?(.*?)>(.*?)<\/p>/";
+$matches = null;
 
-$existIFRAME = null;
 
-if (!preg_match("/iframe/", $cont, $existIFRAME, PREG_OFFSET_CAPTURE)) {
-    $bodylength = mb_strlen($cont);
-
-    if ($bodylength > $blockHeight) {
-
-        $strLength = $showArticleLink ? $blockHeight - 3 : $blockHeight;
-
-        $cont = trim(mb_substr($cont, 0, $strLength));
-    }
+if (preg_match($pattern, $cont, $matches, PREG_OFFSET_CAPTURE)) {
+    $cont = $matches[2][0];
 }
+
+//$existIFRAME = null;
+//
+//if (!preg_match("/iframe/", $cont, $existIFRAME, PREG_OFFSET_CAPTURE)) {
+//    $bodylength = mb_strlen($cont);
+//
+//    if ($bodylength > $blockHeight) {
+//
+//        $strLength = $showArticleLink ? $blockHeight - 3 : $blockHeight;
+//
+//        $cont = trim(mb_substr($cont, 0, $strLength));
+//    }
+//}
 ?>
 
 <div class="block-wrapper block-wrapper-<?php echo $data->style ?>" style="width: <?php echo $data->width ?>px;">

@@ -16,8 +16,36 @@ var ui;
 
         init: function () {
             $(function () {
+                var that = this;
                 $("#searchButton").on('click', ui.onClickSearchImage);
                 document.addEventListener('click', ui.onListenerDocument);
+
+                $(".photo-grey-change").on('hover', function (e) {
+                    var target = e.target;
+
+                    var file = target.src.split('/').pop().split('?')[0];
+
+                    if (file){
+                        var extPattern = /[^.]+$/;
+                        var fileNamePattern = /(.*)\.(png|jpg|jpeg|gif)/;
+                        var ext = extPattern.exec(file);
+                        var fileName = fileNamePattern.exec(file);
+                        var newFileName = '';
+
+                        if (target.hasClass("color")) {
+                            newFileName = fileName[1] + '-grey.' + ext;
+                            target.removeClass("color");
+                        } else {
+                            newFileName = fileName[1].replace('-grey', '.') + ext;
+                            target.addClass("color");
+                        }
+
+                        if (newFileName !== "" && newFileName !== undefined && newFileName !== null){
+                            var url = target.src.replace(file, newFileName);
+                            target.src = url;
+                        }
+                    }
+                });
             });
         },
 
@@ -50,7 +78,7 @@ var ui;
             e.preventDefault();
 
             ui.toggle('#searchForm');
-        },
+        }
     };
 
     $.extend(window.ui, baseUi);
@@ -58,7 +86,7 @@ var ui;
 
 }(jQuery, window, ui || (ui = {})));
 
-(function ($) {
+!(function ($) {
     ui.popup = (function () {
         function popup(options) {
             var that = this;

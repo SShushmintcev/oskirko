@@ -1,50 +1,109 @@
 <?php
 
 // no direct access
-defined( '_JEXEC' ) or die( 'Restricted access' );
- 
+defined('_JEXEC') or die('Restricted access');
+
+use Joomla\String\StringHelper;
+
 // Import library dependencies
 jimport('joomla.plugin.plugin');
 
+define('SPU_PATH', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'custompopup');
+
 class PlgContentCustomPopup extends JPlugin
 {
-    function onContentPrepare($context, &$article, &$params, $page = 0) {	//Load the plugin language file - not in contructor in case plugin called by third party components
-	    $application = JFactory::getApplication();
+	function onContentPrepare($context, &$article, &$params, $page = 0)
+	{
+		if ($context !== "com_content.article")
+		{
+			return;
+		}
 
-	    if ($context !== "com_content.article"){
-	    	return;
-	    }
+		$regex = "#{custompopup\s(.*?)\}(.*?){/custompopup}#s";
 
-	    $regex = "#{custompopup\s(.*?)\}(.*?){/custompopup}#s";
+		if (!preg_match($regex, $article->text))
+		{
+			return;
+		}
 
-	    if ( !preg_match($regex, $article->text)) {
-		    return;
-	    }
+		$this->isAddScript = false;
+		$this->observer    = "popup-show";
 
-	    $doc =& JFactory::getDocument();
-	    $headerstuff = $doc->getHeadData();
+		$t = preg_replace_callback($regex, array('PlgContentCustomPopup', 'test'), $article->text, -1, $count);
 
+		self::addScript();
 
-	    $countMatches = preg_match_all($regex, $article->text, $matches, PREG_SET_ORDER);
+		$article->text = $t;
 
-	    $bracket_reg = '/{+\s*\/*\s*([A-Z][A-Z0-9]*)\b[^}]*\/*\s*}+/i';
-
-	    $t = preg_replace( $bracket_reg, '', $matches[0] );
-
-
-	    return true;
-    }
-
-	function onContentBeforeDisplay($context, $item, $params, $limitstart = 0) {
-
-    	return '';
+		return true;
 	}
 
-    function onContentAfterDisplay($context, &$row, &$params, $limitstart = 0) {
+	private function test(&$matches)
+	{
+		$html = '';
 
+		$path          = JPluginHelper::getLayoutPath('content', 'custompopup', 'default');
+		$this->blockId = '';
+		$this->hidden  = ' style="display: none;"';
+		$patternId     = '/(?<=id=)(.*)/';
 
-	    return '';
-    }
+		if (preg_match($patternId, $matches[1], $matchId))
+		{
+			$value         = preg_replace('/[\'\"]/', '', $matchId[1]);
+			$this->blockId = $value;
+		}
+
+		$this->blockContent = $matches[2];
+
+		ob_start();
+
+		include $path;
+
+		$html = ob_get_clean();
+
+		return $html;
+	}
+
+	private function addScript()
+	{
+		echo '<script language="javascript" type="text/javascript">', chr(10);
+		echo '<!--', chr(10);
+		echo '	jQuery(document).ready(function() {', chr(10);
+		echo '      var that = this;', chr(10);
+		echo '      that.popup = null;', chr(10);
+		echo '      jQuery(".' . $this->observer . '").hover(function(e){
+	                 var target = e.currentTarget;	                 
+	                 var targetId = target.id;	                 
+	                 var block = document.getElementById("block-" + targetId + "");
+	                 
+	                 if (block) {	                    
+	                    var parentPosition = jQuery(target.parentElement).offset();
+                        var targetPosition = jQuery(target).offset();
+                        
+                        var blockWidth = jQuery(block);
+	                    
+	                    var options = {
+			                target: target,
+			                top: targetPosition.top - parentPosition.top + 60,
+			                size: target.offsetWidth + 50,
+			                content: block.innerHTML,
+			                width: blockWidth.width() < 450 ? 450 : blockWidth.width()
+			            };
+			
+			            that.popup = new ui.popup(options);
+			            that.popup.show();	                 
+	                 }
+	                },function(e){
+					    if (that.popup !== null) {
+	                        that.popup.close();
+	                        that.popup = null;
+	                    }
+				    },);', chr(10);
+		echo '	});', chr(10);
+
+		echo '	-->', chr(10);
+		echo '</script>', chr(10);
+	}
 }
 
 ?>
