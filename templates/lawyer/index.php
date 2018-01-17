@@ -84,10 +84,8 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                         <jdoc:include type="modules" name="search"/>
                     </div>
                     <div class="left">
-                        <!--<jdoc:include type="modules" name="letter"/>-->
-                        <a href="/index.php/component/mailto/?tmpl=component&amp;template=lawyer&amp;link=ee10c040a13a577f18f9075a254cf695ac623f55" title="Отправить ссылку другу" onclick="window.open(this.href,'win2','width=400,height=350,menubar=yes,resizable=yes'); return false;" rel="nofollow">
-                            <input id="searchButton" type="image" src="<?php echo $imgPath . 'letter.png' ?>" /></a>
-                    </div>
+                        <input id="button-contactus-lightbox-form133" class="contactus-center contactus-133 contactus-button" type="image" src="<?php echo $imgPath . 'letter.png' ?>" />
+                </div>
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
@@ -122,8 +120,8 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                         <div class="c-center-body">
                             <?php if ($is_home_page) { ?>
                                 <jdoc:include type="modules" name="main-video"/>
-                                <div>
-                                    urls
+                                <div class="c-center-body-info">
+                                    <jdoc:include type="modules" name="position-2"/>
                                 </div>
                             <?php } else { ?>
                                 <jdoc:include type="modules" name="breadcrumbs"/>
@@ -210,6 +208,10 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                 </div>
             </div>
         </div>
+    </div>
+
+    <div style="display: none;">
+        <jdoc:include type="modules" name="hidden"/>
     </div>
 </div>
 </body>
