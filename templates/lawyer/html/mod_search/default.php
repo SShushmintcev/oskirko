@@ -42,5 +42,5 @@ else
 		<input type="hidden" name="option" value="com_search" />
 		<input type="hidden" name="Itemid" value="<?php echo $mitemid; ?>" />
 	</form>
-    <input id="searchButton" type="image" src="<?php echo $imgPath . 'search.png' ?>" />
+    <input id="searchButton" class="pointer" type="image" src="<?php echo $imgPath . 'search.png' ?>" />
 </div>

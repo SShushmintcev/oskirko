@@ -41,10 +41,12 @@
 		<position>bottom-right</position>
 		<position>footer</position>
 		<position>footer-contacts</position>
+		<position>footer-social</position>
 		<position>search</position>
 		<position>letter</position>
 		<position>breadcrumbs</position>
 		<position>hidden</position>
+		<position>scripts</position>
 		<position>position-1</position>
 		<position>position-2</position>
 		<position>position-3</position>

@@ -86,7 +86,7 @@
     margin: 0 10px 0 10px;
     position: relative;
     overflow: hidden;
-    word-break: break-word;
+    word-wrap: break-word;
     font-size: 14px;
 }
 

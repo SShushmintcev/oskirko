@@ -58,6 +58,11 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
     <meta name="HandheldFriendly" content="true"/>
     <meta name="apple-mobile-web-app-capable" content="YES"/>
     <jdoc:include type="head"/>
+
+    <!--[if IE]>
+    <link rel="stylesheet" href="<?php echo $templatePath; ?>/css/ie.css" type="text/css" />
+    <![endif]-->
+
 </head>
 <body>
 <div id="wrapper">
@@ -84,7 +89,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                         <jdoc:include type="modules" name="search"/>
                     </div>
                     <div class="left">
-                        <input id="button-contactus-lightbox-form133" class="contactus-center contactus-133 contactus-button" type="image" src="<?php echo $imgPath . 'letter.png' ?>" />
+                        <input id="button-contactus-lightbox-form133" class="contactus-center contactus-133 contactus-button pointer" type="image" src="<?php echo $imgPath . 'letter.png' ?>" />
                 </div>
                     <div class="clear"></div>
                 </div>
@@ -202,7 +207,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                 <div class="right">
                     <ul class="footer-social g-list">
                         <li><a href="#"><img src="<?php echo $imgPath . 'social/facebook.png' ?>"/></a></li>
-                        <li><a href="#"><img src="<?php echo $imgPath . 'social/linkedin.png' ?>"/></a></li>
+                        <li><a href="#"><img src="<?php echo $imgPath . 'social/twitter.png' ?>"/></a></li>
                         <li><a href="#"><img src="<?php echo $imgPath . 'social/twitter.png' ?>"/></a></li>
                     </ul>
                 </div>
@@ -214,5 +219,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
         <jdoc:include type="modules" name="hidden"/>
     </div>
 </div>
+
+<jdoc:include type="modules" name="scripts"/>
 </body>
 </html>

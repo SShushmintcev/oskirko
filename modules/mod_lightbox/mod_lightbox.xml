@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/css" href="mytest.css"?>
+<extension type="module" version="3.0" method="upgrade" client="site">
+    <name>Lightbox</name>
+    <author>Huge IT</author>
+    <creationDate>December 2014</creationDate>
+    <copyright>Copyright (C) 2013 Huge-IT.com 2013. All rights reserved.</copyright>
+    <license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+    <authorEmail>info@huge-it.com</authorEmail>
+    <authorUrl>http://www.huge-it.com</authorUrl>
+    <version>1.0.0</version>
+    <files>
+        <filename>mod_lightbox.xml</filename>
+        <filename module="mod_lightbox">mod_lightbox.php</filename>
+        <filenmae>index.html</filenmae>
+        <filename>helper.php</filename>
+        <folder>tmpl</folder>
+        <folder>models</folder>
+    </files>
+    <media folder="media" destination="mod_lightbox">
+        <filename>index.html</filename>
+        <folder>css</folder>
+        <folder>js</folder>
+        <folder>jscolor</folder>
+    </media>
+    <config>
+
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/modules/mod_lightbox/models/fields" label="General Options">
+                <field
+                        name="Internationalization"
+                        class=""
+                        type="jscolor"
+                        type_="label"
+                        labelclass="options-block-title"
+                />
+                <field
+                        name="light_box_style"
+                        id="light_box_style"
+                        type="jscolor"
+                        default="3"
+                        label="Lightbox style"
+                        description=""
+                        type_="light_box_style"
+                        class="has-background">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </field>
+                <field
+                        name="view-style-block"
+                        type_="list"
+                        type="jscolor"
+                        default="0"
+                        label=""
+                        description=""
+                        class="has-background"
+                />
+                <field for="light_box_transition"
+                       name="lightbox_transition"
+                       type="jscolor"
+                       type_="lightbox_transition_list"
+                       default="Elastic"
+                       label="Transition type"
+                       id="light_box_transition">
+                    <option value="elastic">Elastic</option>
+                    <option value="fade">Fade</option>
+                    <option value="none">None</option>
+                </field>
+                <field
+                        name="light_box_speed"
+                        type_="jscolor"
+                        type="number"
+                        default="800"
+                        label="Opening speed"
+                        id="light_box_speed"
+                        class="text"
+                        for="light_box_speed"/>
+                <field
+                        name="light_box_fadeout"
+                        type_="jscolor"
+                        default = "300"
+                        type="number"
+                        label="Closing speed"
+                        id="light_box_fadeout"
+                        value="light_box_fadeout"
+                        for="light_box_fadeout"/>
+                <!--<field-->
+                        <!--name="light_box_title"-->
+                        <!--type="jscolor"-->
+                        <!--type_="checkbox"-->
+                        <!--default="Show the title"-->
+                        <!--label="Show the title"-->
+                        <!--description=""-->
+                        <!--for="light_box_title"-->
+                        <!--value = 'Show the title'/>-->
+                <field
+                        for="light_box_opacity"
+                        name="light_box_opacity"
+                        id="light_box_opacity"
+                        type_="light_box_opacity_text"
+                        type="jscolor"
+                        label="Overlay transparency"
+                        default="20"
+                        data-slider-highlight="true"
+                        data-slider-values="0,10,20,30,40,50,60,70,80,90,100"
+                        data-slider="true"/>
+                <field
+                        name="light_box_open"
+                        type_="jscolor"
+                        type="checkbox"
+                        label="Auto open"
+                        description=""
+                        for="light_box_open" />
+                <field
+                        name="light_box_overlayclose"
+                        type_="jscolor"
+                        type="checkbox"
+                        label="Overlay close"
+                        description=""
+                        for="light_box_overlayclose" />
+                <field
+                        name="light_box_esckey"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_esckey"
+                        label="EscKey close"
+                        id="light_box_esckey"
+                        />
+                <field
+                        name="light_box_arrowkey"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_arrowkey"
+                        label="Keyboard navigation"
+                        id="light_box_arrowkey"
+                />
+                <field
+                        name="light_box_loop"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_loop"
+                        label="Loop content"
+                        id="light_box_loop"/>
+                <field
+                        name="light_box_closebutton"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_closebutton"
+                        label="Show close button"
+                        id="light_box_closebutton"/>
+                <field
+                        name="Positioning"
+                        class=""
+                        type="jscolor"
+                        type_="label"
+                        labelclass="options-block-title"/>
+                <field
+                        name="light_box_fixed"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_fixed"
+                        label="Fixed position"
+                        id="light_box_fixed"/>
+                <field name="slider_title_position" type="jscolor" type_="radio" default="5" label="Popup position" description="">
+                    <option type="radio" value="1" id="slideshow_title_top-left" default="5">1</option>
+                    <option type="radio" value="2" id="slideshow_title_top-center" >2</option>
+                    <option type="radio" value="3" id="slideshow_title_top-right" >3</option>
+                    <option type="radio" value="4" id="slideshow_title_middle-left" >4</option>
+                    <option type="radio" value="5" id="slideshow_title_middle-center" >5</option>
+                    <option type="radio" value="6" id="slideshow_title_middle-right">6</option>
+                    <option type="radio" value="7" id="slideshow_title_bottom-left" >7</option>
+                    <option type="radio" value="8" id="slideshow_title_bottom-center" >8</option>
+                    <option type="radio" value="9" id="slideshow_title_bottom-right" >9</option>
+                </field>
+                <field
+                        name="Dimensions"
+                        class=""
+                        type="jscolor"
+                        type_="label"
+                        labelclass="options-block-title"/>
+                <field
+                        name="light_box_size_fix"
+                        type_="jscolor"
+                        type="checkbox"
+                        script =''
+                        for="light_box_size_fix"
+                        label="Popup size fix"
+                        id="light_box_size_fix"/>
+                <field
+                        name="light_box_initialwidth"
+                        type_="jscolor"
+                        type="number"
+                        default="100"
+                        for="light_box_initialwidth"
+                        label="Popup initial width"
+                        id="light_box_initialwidth"
+                        class="text"/>
+                <field
+                        name="light_box_maxwidth"
+                        type_="jscolor"
+                        type="number"
+                        default="768"
+                        for="light_box_maxwidth"
+                        label="Popup maxWidth"
+                        id="light_box_maxwidth"
+                        class="not-fixed-size"
+                        labelclass="not-fixed-size"/>
+                <field
+                        name="light_box_width"
+                        type_="jscolor"
+                        type="number"
+                        default="1000"
+                        for="light_box_width"
+                        label="Popup width"
+                        id="light_box_width"
+                        class="fixed-size"
+                        labelclass="fixed-size"/>
+                <field
+                        name="light_box_initialheight"
+                        type_="jscolor"
+                        type="number"
+                        default="100"
+                        for="light_box_initialheight"
+                        label="Popup initial height"
+                        id="light_box_initialheight"
+                        class="text"/>
+                <field
+                        name="light_box_height"
+                        type_="jscolor"
+                        type="number"
+                        default="1000"
+                        for="light_box_height"
+                        label="Popup height"
+                        id="light_box_height"
+                        class="fixed-size"
+                        labelclass="fixed-size"/>
+                <field
+                        name="light_box_maxheight"
+                        type_="jscolor"
+                        type="number"
+                        default="500"
+                        for="light_box_maxheight"
+                        label="Popup maxHeigh"
+                        id="light_box_maxheight"
+                        class="not-fixed-size"
+                        labelclass="not-fixed-size"/>
+                <field
+                        name="Slideshow"
+                        class=""
+                        type="jscolor"
+                        type_="label"
+                        labelclass="options-block-title"/>
+                <field
+                        name="light_box_slideshow"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_slideshow"
+                        label="Slideshow"
+                        id="light_box_slideshow"
+                />
+                <field
+                        name="light_box_slideshowspeed"
+                        type_="jscolor"
+                        type="number"
+                        default="2500"
+                        for="light_box_slideshowspeed"
+                        label="Slideshow interval"
+                        id="light_box_slideshowspeed"
+                        class="text"/>
+                <field
+                        name="light_box_slideshowauto"
+                        type_="jscolor"
+                        type="checkbox"
+                        for="light_box_slideshowauto"
+                        label="Slideshow auto start"
+                        id="light_box_slideshowauto"
+                />
+                <field
+                        name="light_box_slideshowstart"
+                        type_="jscolor"
+                        type="text"
+                        default="start slideshow"
+                        for="light_box_slideshowstart"
+                        label="Slideshow start button text"
+                        id="light_box_slideshowstart"
+                        class="text"/>
+                <field
+                        name="light_box_slideshowstop"
+                        type_="jscolor"
+                        type="text"
+                        default="stop slideshow"
+                        for="light_box_slideshowstop"
+                        label="Slideshow stop button text"
+                        id="light_box_slideshowstop"
+                        class="text"/>
+                <field
+                        name="light_box_scalephotos"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_scalephotos'
+                        class="text"/>
+                <field
+                        name="light_box_scrolling"
+                        type="hidden"
+                        default=""
+                        label="light_box_returnfocus"
+                        value='light_box_scrolling'
+                        class="text"/>
+                <field
+                        name="light_box_trapfocus"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_trapfocus'
+                        class="text"/>
+                <field
+                        name="light_box_fastiframe"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_fastiframe'
+                        class="text"/>
+                <field
+                        name="light_box_preloading"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_preloading'
+                        class="text"/>
+                <field
+                        name="light_box_previous"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_previous'
+                        class="text"/>
+                <field
+                        name="light_box_next"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_next'
+                        class="text"/>
+                <field
+                        name="light_box_close"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_close'
+                        class="text"/>
+                <field
+                        name="light_box_html"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_html'
+                        class="text"/>
+                <field
+                        name="light_box_photo"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_photo'
+                        class="text"/>
+                <field
+                        name="light_box_innerwidth"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_innerwidth'
+                        class="text"/>
+                <field
+                        name="light_box_innerheight"
+                        type="hidden"
+                        default=""
+                        label="light_box_scalephotos"
+                        value='light_box_innerheight'
+                        class="text"/>
+                <field
+                        name="light_box_reposition"
+                        type="hidden"
+                        default=""
+                        label="light_box_reposition"
+                        value='light_box_reposition'
+                        class="text"/>
+                <field
+                        name="light_box_retinaimage"
+                        type="hidden"
+                        default=""
+                        label="light_box_reposition"
+                        labelclass="fixed-size"
+                        value='light_box_retinaimage'
+                        class="text"/>
+                <field
+                        name="light_box_retinaurl"
+                        type="hidden"
+                        default=""
+                        label="light_box_reposition"
+                        value='light_box_retinaurl'
+                        class="text"/>
+                <field
+                        name="light_box_retinasuffix"
+                        type="hidden"
+                        default=""
+                        label="light_box_reposition"
+                        value='light_box_retinasuffix'
+                        class="text"/>
+            </fieldset>
+        </fields>
+    </config>
+</extension>
