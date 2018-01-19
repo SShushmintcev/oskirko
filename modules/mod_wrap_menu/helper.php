@@ -32,7 +32,6 @@ class ModWrapMenu
                 4 => new StyleObject('#bcb6c7', '#161616'),
             );
 
-
             if ($items) {
                 foreach ($items as $i => $item) {
                     $item->preview = new stdClass();
@@ -85,7 +84,12 @@ class ModWrapMenu
                             if (preg_match('/&id=(.*)/', $item->link, $matches, PREG_OFFSET_CAPTURE)) {
                                 $articleId = $matches[1][0];
 
-                                $article = JControllerLegacy::getInstance('Content')->getModel('Article')->getItem($articleId);
+
+	                            $articleModel = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true));
+	                            $articleModel->setState('params', $params);
+	                            $article = $articleModel->getItem($articleId);
+
+                                //$article = JControllerLegacy::getInstance('Content')->getModel('Article')->getItem($articleId);
 
                                 if ($article) {
                                     $cont = str_replace(array("\r\n", "\r"), "", $article->introtext);

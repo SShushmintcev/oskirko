@@ -3,9 +3,9 @@ var ui;
 !(function ($, window, ui) {
     "use strict";
 
-    String.prototype.format = function() {
+    String.prototype.format = function () {
         var formatted = this;
-        for( var arg in arguments ) {
+        for (var arg in arguments) {
             formatted = formatted.replace("{" + arg + "}", arguments[arg]);
         }
         return formatted;
@@ -14,9 +14,14 @@ var ui;
     var baseUi = {
         view: {},
 
+        base: '',
+        baseUrl: '',
+        imgPath: '',
+
+        ymapsContacts: [],
+
         init: function () {
             $(function () {
-                var that = this;
                 $("#searchButton").on('click', ui.onClickSearchImage);
                 document.addEventListener('click', ui.onListenerDocument);
 
@@ -25,7 +30,7 @@ var ui;
 
                     var file = target.src.split('/').pop().split('?')[0];
 
-                    if (file){
+                    if (file) {
                         var extPattern = /[^.]+$/;
                         var fileNamePattern = /(.*)\.(png|jpg|jpeg|gif)/;
                         var ext = extPattern.exec(file);
@@ -40,7 +45,7 @@ var ui;
                             target.addClass("color");
                         }
 
-                        if (newFileName !== "" && newFileName !== undefined && newFileName !== null){
+                        if (newFileName !== "" && newFileName !== undefined && newFileName !== null) {
                             var url = target.src.replace(file, newFileName);
                             target.src = url;
                         }
@@ -123,10 +128,10 @@ var ui;
         popup.prototype.show = function () {
             var that = this;
             if (that._parent !== null) {
-                that._template.style.top = that.options.top+"px";
+                that._template.style.top = that.options.top + "px";
                 that._template.style.minHeight = "160px";
-                that._template.style.width = that.options.width+"px";
-                that._template.style.left = that.options.size+"px";
+                that._template.style.width = that.options.width + "px";
+                that._template.style.left = that.options.size + "px";
                 that._template.style.display = "block";
 
                 that._parent.appendChild(that._template);
@@ -137,39 +142,39 @@ var ui;
             if (this._template !== null) {
                 var popup = this._parent.getElementById("customPopup");
 
-                if (popup){
+                if (popup) {
                     popup.remove();
                 }
 
                 this._template = null;
             }
         };
-        
+
         popup.prototype._createTemplate = function () {
             var that = this;
 
             var contTemplate = document.createElement('div');
-            contTemplate.id="customPopup"
-            contTemplate.className="modal-popup-cont";
+            contTemplate.id = "customPopup"
+            contTemplate.className = "modal-popup-cont";
 
             var template = document.createElement('div');
-            template.className="modal-popup";
+            template.className = "modal-popup";
 
             var checkDiv = document.createElement('div');
-            checkDiv.className="modal-popup-check";
+            checkDiv.className = "modal-popup-check";
 
             template.appendChild(checkDiv);
 
             if (that.options.title !== null && that.options.title !== "") {
                 var title = document.createElement('div');
-                title.className="modal-popup-title";
-                title.innerHTML= "<span>{0}</span>".format(that.options.title);
+                title.className = "modal-popup-title";
+                title.innerHTML = "<span>{0}</span>".format(that.options.title);
 
                 template.appendChild(title);
             }
 
             var body = document.createElement('div');
-            body.className="modal-popup-content";
+            body.className = "modal-popup-content";
             body.innerHTML = that.options.content;
 
             template.appendChild(body);
@@ -181,3 +186,157 @@ var ui;
         return popup;
     }());
 }(jQuery));
+
+!(function ($) {
+
+    function map(ymapsContacts) {
+        this.ymapsContacts = ymapsContacts || [];
+        this.balloonTemplates = [];
+    }
+
+    map.prototype.init = function () {
+
+        this._createBaloonTemplates();
+
+        ymaps.ready(this._load.bind(this));
+    };
+
+    map.prototype._load = function () {
+        var that = this;
+        // debugger;
+        if (that.ymapsContacts > 0) {
+
+
+        }
+
+        var myMap = new ymaps.Map("map", {
+                center: [59.94726373, 30.34272220],
+                zoom: 16,
+                behaviors: ['default', 'scrollZoom']
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
+
+        myMap.controls.remove('trafficControl');
+        myMap.controls.remove('typeSelector');
+        myMap.controls.remove('searchControl');
+
+        var img = ui.baseUrl + ui.imgPath + 'point.png';
+        var squareLayout = ymaps.templateLayoutFactory.createClass(
+            '<div class="placemark_layout_container"><img src="' + img + '" /></div>');
+
+        var balloonLayout = ymaps.templateLayoutFactory.createClass(
+            '<div class="balloon-style top">' +
+            '<a class="close-balloon" href="#">&times;</a>' +
+            '<div class="arrow"></div>' +
+            '<div class="balloon-style-inner">' +
+            '$[[options.contentLayout observeSize minWidth=150 maxWidth=180 maxHeight=240]]' +
+            '</div>' +
+            '</div>',
+            {
+                build: function () {
+                    this.constructor.superclass.build.call(this);
+
+                    this._$element = $('.balloon-style', this.getParentElement());
+
+                    this.applyElementOffset();
+
+                    this._$element.find('.close-balloon').on('click', $.proxy(this.onCloseClick, this));
+                },
+                clear: function () {
+                    this._$element.find('.close-balloon').off('click');
+
+                    this.constructor.superclass.clear.call(this);
+                },
+                onSublayoutSizeChange: function () {
+                    balloonLayout.superclass.onSublayoutSizeChange.apply(this, arguments);
+
+                    if (!this._isElement(this._$element)) {
+                        return;
+                    }
+
+                    this.applyElementOffset();
+
+                    this.events.fire('shapechange');
+                },
+                applyElementOffset: function () {
+                    this._$element.css({
+                        left: -(this._$element[0].offsetWidth / 2) + 4,
+                        top: -(this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight)
+                    });
+                },
+                onCloseClick: function (e) {
+                    e.preventDefault();
+
+                    this.events.fire('userclose');
+                },
+                getShape: function () {
+                    if (!this._isElement(this._$element)) {
+                        return balloonLayout.superclass.getShape.call(this);
+                    }
+
+                    var position = this._$element.position();
+
+                    return new ymaps.shape.Rectangle(new ymaps.geometry.pixel.Rectangle([
+                        [position.left, position.top], [
+                            position.left + this._$element[0].offsetWidth,
+                            position.top + this._$element[0].offsetHeight + this._$element.find('.arrow')[0].offsetHeight
+                        ]
+                    ]));
+                },
+                _isElement: function (element) {
+                    return element && element[0] && element.find('.arrow')[0];
+                }
+            });
+
+        var balloonContentLayout = ymaps.templateLayoutFactory.createClass(
+            '<div class="balloon-style-content">$[properties.balloonContent]</div>'
+        );
+
+
+        myPlacemark = new ymaps.Placemark(myMap.getCenter(),
+            {
+                hintContent: 'Адвокатская консультация СПбКА',
+                balloonContent: '<div style="text-align: center;">Санкт-Петербург,<br />ул.Гагаринская,<br />д.6а<br /><br />' +
+                'пн-пт 09:00 - 18:00<br /><br />' +
+                '<div style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-weight: 500; line-height: 14.4px;">' +
+                '<span style="font-size: 16px;">812</span>&nbsp;<span style="font-size: 19px;">275 57 85</span>' +
+                '</div>' +
+                '<a style="font-size: 13px;" class="mail" href="mailto:info@oskirko.spb.ru">info@oskirko.spb.ru</a></div>'
+            },
+            {
+                balloonShadow: false,
+                balloonLayout: balloonLayout,
+                balloonContentLayout: balloonContentLayout,
+                balloonPanelMaxMapArea: 0,
+                hideIconOnBalloonOpen: false,
+                iconImageHref: img,
+                iconLayout: squareLayout,
+                iconShape: {
+                    type: 'Rectangle',
+                    coordinates: [
+                        [-25, -25], [25, 25]
+                    ]
+                }
+            }
+        );
+
+        myMap.geoObjects.add(myPlacemark);
+    };
+
+    map.prototype._createBalloonTemplates = function () {
+      debugger;
+
+      for (var i = 0; i < this.ymapsContacts; i++){
+
+      }
+
+    };
+
+    ui.view.Map = map;
+
+}(jQuery));
+
+// jQuery(document).ready(function() {
+//     var view = new yamps.Map();
+// });

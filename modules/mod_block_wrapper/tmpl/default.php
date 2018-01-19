@@ -13,13 +13,13 @@ $BWBodyHeight = $data->height;
 $blockHeight = $data->height + 136;
 
 $cont = str_replace(array("\r\n", "\r"), "", $cont);
-$pattern = "/<p\s?(.*?)>(.*?)<\/p>/";
-$matches = null;
-
-
-if (preg_match($pattern, $cont, $matches, PREG_OFFSET_CAPTURE)) {
-    $cont = $matches[2][0];
-}
+//$pattern = "/<p\s?(.*?)>(.*?)<\/p>/";
+//$matches = null;
+//
+//
+//if (preg_match($pattern, $cont, $matches, PREG_OFFSET_CAPTURE)) {
+//    $cont = $matches[2][0];
+//}
 
 //$existIFRAME = null;
 //

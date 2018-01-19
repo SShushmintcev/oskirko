@@ -3,20 +3,19 @@
 //defined('_JEXEC') or die;
 defined('_JEXEC') or die('Restricted access');
 
-
 JLoader::import('joomla.filesystem.file');
 
 JHtml::_('behavior.framework', true);
 
 $app = JFactory::getApplication();
 
+$config = JFactory::getConfig();
+
 $doc = $app->getDocument();
 $doc->setGenerator(null);
+$doc->setMetaData('author', null);
 
 $params = $app->getTemplate(true)->params;
-
-$date = JFactory::getDate();
-$cur_year = JHtml::_('date', $date, 'Y');
 
 $templatePath = $this->baseurl . '/templates/' . $this->template;
 
@@ -53,7 +52,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
 <!DOCTYPE html>
 <html lang="<?php echo $this->language; ?>" dir="<?php echo $this->direction; ?>">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=yes"/>
     <meta name="HandheldFriendly" content="true"/>
     <meta name="apple-mobile-web-app-capable" content="YES"/>
@@ -62,6 +61,14 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
     <!--[if IE]>
     <link rel="stylesheet" href="<?php echo $templatePath; ?>/css/ie.css" type="text/css" />
     <![endif]-->
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        ui.baseUrl = '<?php echo $this->baseurl; ?>';
+        ui.base = '<?php echo $this->base; ?>';
+        ui.imgPath = '<?php echo $imgPath; ?>';
+    </script>
 
 </head>
 <body>
@@ -221,5 +228,30 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
 </div>
 
 <jdoc:include type="modules" name="scripts"/>
+
+<?php if ($is_home_page){ ?>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+
+            var ymapContats = [{
+                pointToolTip: 'Адвокатская консультация СПбКА',
+                city: 'Санкт-Петербург',
+                street: 'ул.Гагаринская',
+                house: 'д.6а',
+                work: 'пн-пт 09:00 - 18:00',
+                contact: {
+                    zip: '812',
+                    phone: '275 57 85',
+                    mail: 'info@oskirko.spb.ru' // '<?php echo $config->get('mailfrom'); ?>'
+                }
+
+            }];
+
+            var view = new ui.view.Map();
+            view.init();
+        });
+    </script>
+<?php } ?>
+
 </body>
 </html>

@@ -50,7 +50,7 @@ $params = $app->getTemplate(true)->params;
 
 <div class="clear"></div>
 
-<div style="min-height: 250px;">
+<div style="min-height: 450px;">
     <div class="lc-content l-container" style="min-height: 250px;">
         <div class="l-content" style="text-align: center;">
             <h2 style="margin: 0px; padding: 25px 0 25px 0;">
@@ -83,16 +83,16 @@ $params = $app->getTemplate(true)->params;
 <div id="lFooter">
     <div class="l-footer l-container">
         <div class="l-footer-content">
-            <div class="l-foot-left">
+            <div class="left l-foot-left">
                 <div class="l-footer-back"></div>
                 <div class="l-footer-logo left">
-                    <a href="<?php echo $this->baseurl; ?>/index.php">
-                        <img src="<?php echo $imgPath . 'logo.png' ?>" width="97" height="68"/>
+                    <a href="<?php echo $this->baseurl ?>">
+                        <img src="<?php echo $imgPath . 'logo-footer.png' ?>" width="72" height="59"/>
                     </a>
                 </div>
                 <div class="l-footer-title left l-footer-top">
                     <div class="lf-title-link">
-                        <a href="<?php echo $this->baseurl; ?>/index.php">
+                        <a href="<?php echo $this->baseurl ?>">
                             <span class="block f-title"><?php echo JText::_('TPL_LAWYER_OSKIRKO_TITLE'); ?></span>
                             <span class="block f-cons"><?php echo JText::_('TPL_LAWEYR_CONSULTATION'); ?></span>
                         </a>
@@ -104,9 +104,17 @@ $params = $app->getTemplate(true)->params;
                 </div>
                 <div class="clear"></div>
             </div>
+            <div class="left l-footer-top l-foot-center">
+                <jdoc:include type="modules" name="footer"/>
+            </div>
+            <div class="left l-footer-top l-foot-right">
+                <jdoc:include type="modules" name="footer-contacts"/>
+            </div>
             <div class="clear"></div>
         </div>
+
         <div class="separator"></div>
+
         <div class="l-footer-bottom">
             <div class="left">
                 <span class="copyright">&copy;&nbsp;<?php echo JText::_('TPL_LAWYER_COPYRIGHT'); ?></span>
@@ -114,7 +122,7 @@ $params = $app->getTemplate(true)->params;
             <div class="right">
                 <ul class="footer-social g-list">
                     <li><a href="#"><img src="<?php echo $imgPath . 'social/facebook.png' ?>"/></a></li>
-                    <li><a href="#"><img src="<?php echo $imgPath . 'social/linkedin.png' ?>"/></a></li>
+                    <li><a href="#"><img src="<?php echo $imgPath . 'social/twitter.png' ?>"/></a></li>
                     <li><a href="#"><img src="<?php echo $imgPath . 'social/twitter.png' ?>"/></a></li>
                 </ul>
             </div>
