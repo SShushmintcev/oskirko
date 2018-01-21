@@ -188,9 +188,10 @@ var ui;
 
 !(function ($) {
 
-    function map(ymapsContacts) {
+    function map(ymapsContacts, selectors) {
         this.ymapsContacts = ymapsContacts || [];
         this.balloonTemplates = [];
+        this.selectors = selectors || [];
     }
 
     map.prototype.init = function () {
@@ -208,20 +209,56 @@ var ui;
             throw new Error('Not found coordinates for yMap');
         }
 
-        var myMap = new ymaps.Map("map", {
-            center: [59.94783014, 30.35691551],
-            zoom: 15,
-            behaviors: ['default', 'scrollZoom']
-        }, {
-            searchControlProvider: 'yandex#search'
-        });
+        if (this.selectors.length > 0) {
+            for (var i = 0; i < this.selectors.length; i++) {
+                var selector = this.selectors[i];
+                selector[0].innerHTML = "";
 
-        myMap.controls.remove('trafficControl');
-        myMap.controls.remove('typeSelector');
-        myMap.controls.remove('searchControl');
+                var balloonTemplate = null;
 
-        for (var i = 0; i < this.balloonTemplates.length ; i++){
-            myMap.geoObjects.add(this.balloonTemplates[i]);
+                for (var j = 0; j < this.balloonTemplates.length; j++) {
+                    if (selector.data().point === this.balloonTemplates[j].customId) {
+                        balloonTemplate = this.balloonTemplates[j];
+                    }
+                }
+
+                if (balloonTemplate == null) {
+                    throw new Error('Not found balloon');
+                }
+
+                var map = new ymaps.Map(selector[0].id, {
+                    center: balloonTemplate.customCenterMap,
+                    zoom: 17,
+                    behaviors: ['default', 'scrollZoom']
+                }, {
+                    searchControlProvider: 'yandex#search'
+                });
+
+                map.controls.remove('trafficControl');
+                map.controls.remove('typeSelector');
+                map.controls.remove('searchControl');
+
+                map.geoObjects.add(balloonTemplate);
+            }
+        } else {
+            var mainMapSelector = jQuery("#map");
+            mainMapSelector[0].innerHTML = "";
+
+            var mainMap = new ymaps.Map("map", {
+                center: [59.94783014, 30.35691551],
+                zoom: 15,
+                behaviors: ['default', 'scrollZoom']
+            }, {
+                searchControlProvider: 'yandex#search'
+            });
+
+            mainMap.controls.remove('trafficControl');
+            mainMap.controls.remove('typeSelector');
+            mainMap.controls.remove('searchControl');
+
+            for (var i = 0; i < this.balloonTemplates.length; i++) {
+                mainMap.geoObjects.add(this.balloonTemplates[i]);
+            }
         }
     };
 
@@ -340,6 +377,9 @@ var ui;
                     }
                 }
             );
+
+            placemark.customId = this.ymapsContacts[i].id;
+            placemark.customCenterMap = this.ymapsContacts[i].center;
 
             that.balloonTemplates.push(placemark);
         }

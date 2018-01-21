@@ -25,6 +25,10 @@ body {
     url('../css/kunstler.ttf') format('truetype');
 }
 
+table {
+    border-collapse: separate;
+}
+
 .main-clients, .main-case {
     font-family: KunstlerScript;
     font-size: 72pt;

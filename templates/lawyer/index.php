@@ -71,6 +71,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
 
         ui.yMapPoint = [{
             id: 0,
+            center: [59.94713607, 30.34276461],
             coordinates: [59.94713607, 30.34276904],
             pointToolTip: 'Адвокатская консультация СПбКА',
             city: 'Санкт-Петербург',
@@ -88,6 +89,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
         },
             {
                 id: 1,
+                center: [59.94922429, 30.36845104],
                 coordinates: [59.94928883, 30.36847534],
                 pointToolTip: 'Адвокатская консультация СПбКА',
                 city: 'Санкт-Петербург',
