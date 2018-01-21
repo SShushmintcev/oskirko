@@ -79,15 +79,16 @@ class PlgContentCustomPopup extends JPlugin
 	                 if (block) {	                    
 	                    var parentPosition = jQuery(target.parentElement).offset();
                         var targetPosition = jQuery(target).offset();
-                        
-                        var blockWidth = jQuery(block);
+
+                        var jBlock = jQuery(block);
+                        var blockWidth = jBlock.width();
 	                    
 	                    var options = {
 			                target: target,
 			                top: targetPosition.top - parentPosition.top + 60,
 			                size: target.offsetWidth + 50,
 			                content: block.innerHTML,
-			                width: blockWidth.width() < 450 ? 450 : blockWidth.width()
+			                width: blockWidth < 450 ? 450 : (blockWidth >= 600 ? 590 : blockWidth + 40)
 			            };
 			
 			            that.popup = new ui.popup(options);

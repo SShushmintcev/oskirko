@@ -29,7 +29,7 @@ $menu = $app->getMenu();
 $lang = JFactory::getLanguage();
 $is_home_page = $menu->getActive() == $menu->getDefault($lang->getTag());
 
-$isLeftSide = !!$this->getBuffer('modules','left-side');
+$isLeftSide = !!$this->getBuffer('modules', 'left-side');
 
 // Add JavaScript Frameworks
 JHtml::_('bootstrap.framework');
@@ -59,7 +59,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
     <jdoc:include type="head"/>
 
     <!--[if IE]>
-    <link rel="stylesheet" href="<?php echo $templatePath; ?>/css/ie.css" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $templatePath; ?>/css/ie.css" type="text/css"/>
     <![endif]-->
 
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
@@ -68,6 +68,41 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
         ui.baseUrl = '<?php echo $this->baseurl; ?>';
         ui.base = '<?php echo $this->base; ?>';
         ui.imgPath = '<?php echo $imgPath; ?>';
+
+        ui.yMapPoint = [{
+            id: 0,
+            coordinates: [59.94713607, 30.34276904],
+            pointToolTip: 'Адвокатская консультация СПбКА',
+            city: 'Санкт-Петербург',
+            street: 'ул.Гагаринская',
+            house: 'д.6а',
+            work: {
+                days: 'пн-пт',
+                time: '09:00 - 18:00'
+            },
+            contact: {
+                zip: '812',
+                phone: '275 57 85',
+                mail: '<?php echo $config->get('mailfrom'); ?>'
+            }
+        },
+            {
+                id: 1,
+                coordinates: [59.94928883, 30.36847534],
+                pointToolTip: 'Адвокатская консультация СПбКА',
+                city: 'Санкт-Петербург',
+                street: 'ул.Шпалерная',
+                house: '46/8',
+                work: {
+                    days: 'пн-пт',
+                    time: '09:00 - 18:00'
+                },
+                contact: {
+                    zip: '812',
+                    phone: '275 57 85',
+                    mail: '<?php echo $config->get('mailfrom'); ?>'
+                }
+            }];
     </script>
 
 </head>
@@ -96,8 +131,10 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                         <jdoc:include type="modules" name="search"/>
                     </div>
                     <div class="left">
-                        <input id="button-contactus-lightbox-form133" class="contactus-center contactus-133 contactus-button pointer" type="image" src="<?php echo $imgPath . 'letter.png' ?>" />
-                </div>
+                        <input id="button-contactus-lightbox-form133"
+                               class="contactus-center contactus-133 contactus-button pointer" type="image"
+                               src="<?php echo $imgPath . 'letter.png' ?>"/>
+                    </div>
                     <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
@@ -214,7 +251,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                 <div class="right">
                     <ul class="footer-social g-list">
                         <li><a href="#"><img src="<?php echo $imgPath . 'social/facebook.png' ?>"/></a></li>
-                        <li><a href="#"><img src="<?php echo $imgPath . 'social/twitter.png' ?>"/></a></li>
+                        <li><a href="#"><img src="<?php echo $imgPath . 'social/vk.png' ?>"/></a></li>
                         <li><a href="#"><img src="<?php echo $imgPath . 'social/twitter.png' ?>"/></a></li>
                     </ul>
                 </div>
@@ -229,25 +266,10 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
 
 <jdoc:include type="modules" name="scripts"/>
 
-<?php if ($is_home_page){ ?>
+<?php if ($is_home_page) { ?>
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-
-            var ymapContats = [{
-                pointToolTip: 'Адвокатская консультация СПбКА',
-                city: 'Санкт-Петербург',
-                street: 'ул.Гагаринская',
-                house: 'д.6а',
-                work: 'пн-пт 09:00 - 18:00',
-                contact: {
-                    zip: '812',
-                    phone: '275 57 85',
-                    mail: 'info@oskirko.spb.ru' // '<?php echo $config->get('mailfrom'); ?>'
-                }
-
-            }];
-
-            var view = new ui.view.Map();
+        jQuery(document).ready(function () {
+            var view = new ui.view.Map(ui.yMapPoint);
             view.init();
         });
     </script>

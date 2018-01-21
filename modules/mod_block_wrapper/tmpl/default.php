@@ -41,8 +41,8 @@ $cont = str_replace(array("\r\n", "\r"), "", $cont);
         <div class="block-wrapper-check wrapper-check-<?php echo $data->style ?>"></div>
         <?php if ($showTitle) { ?>
             <span class="block-wrapper-text-title bw-title-<?php echo $data->style ?>">
-            <?php echo mb_strtoupper($data->title) ?>
-        </span>
+                <?php echo mb_strtoupper($data->title) ?>
+            </span>
         <?php } ?>
     </div>
     <div class="block-wrapper-body block-wrapper-body-<?php echo $data->style ?>"

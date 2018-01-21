@@ -27,7 +27,6 @@ var ui;
 
                 $(".photo-grey-change").on('hover', function (e) {
                     var target = e.target;
-
                     var file = target.src.split('/').pop().split('?')[0];
 
                     if (file) {
@@ -195,33 +194,41 @@ var ui;
     }
 
     map.prototype.init = function () {
-
-        this._createBaloonTemplates();
-
         ymaps.ready(this._load.bind(this));
     };
 
     map.prototype._load = function () {
         var that = this;
-        // debugger;
-        if (that.ymapsContacts > 0) {
 
+        if (that.ymapsContacts.length > 0) {
+            this._createBalloonTemplates();
+        }
 
+        if (this.balloonTemplates.length === 0) {
+            throw new Error('Not found coordinates for yMap');
         }
 
         var myMap = new ymaps.Map("map", {
-                center: [59.94726373, 30.34272220],
-                zoom: 16,
-                behaviors: ['default', 'scrollZoom']
-            }, {
-                searchControlProvider: 'yandex#search'
-            });
+            center: [59.94783014, 30.35691551],
+            zoom: 15,
+            behaviors: ['default', 'scrollZoom']
+        }, {
+            searchControlProvider: 'yandex#search'
+        });
 
         myMap.controls.remove('trafficControl');
         myMap.controls.remove('typeSelector');
         myMap.controls.remove('searchControl');
 
-        var img = ui.baseUrl + ui.imgPath + 'point.png';
+        for (var i = 0; i < this.balloonTemplates.length ; i++){
+            myMap.geoObjects.add(this.balloonTemplates[i]);
+        }
+    };
+
+    map.prototype._createBalloonTemplates = function () {
+        var that = this;
+
+        var img = ui.baseUrl + ui.imgPath + 'ypoint.png';
         var squareLayout = ymaps.templateLayoutFactory.createClass(
             '<div class="placemark_layout_container"><img src="' + img + '" /></div>');
 
@@ -293,50 +300,51 @@ var ui;
             '<div class="balloon-style-content">$[properties.balloonContent]</div>'
         );
 
-
-        myPlacemark = new ymaps.Placemark(myMap.getCenter(),
-            {
-                hintContent: 'Адвокатская консультация СПбКА',
-                balloonContent: '<div style="text-align: center;">Санкт-Петербург,<br />ул.Гагаринская,<br />д.6а<br /><br />' +
-                'пн-пт 09:00 - 18:00<br /><br />' +
-                '<div style="font-family: Tahoma, Verdana, Segoe, sans-serif; font-weight: 500; line-height: 14.4px;">' +
-                '<span style="font-size: 16px;">812</span>&nbsp;<span style="font-size: 19px;">275 57 85</span>' +
-                '</div>' +
-                '<a style="font-size: 13px;" class="mail" href="mailto:info@oskirko.spb.ru">info@oskirko.spb.ru</a></div>'
-            },
-            {
-                balloonShadow: false,
-                balloonLayout: balloonLayout,
-                balloonContentLayout: balloonContentLayout,
-                balloonPanelMaxMapArea: 0,
-                hideIconOnBalloonOpen: false,
-                iconImageHref: img,
-                iconLayout: squareLayout,
-                iconShape: {
-                    type: 'Rectangle',
-                    coordinates: [
-                        [-25, -25], [25, 25]
-                    ]
+        for (var i = 0; i < this.ymapsContacts.length; i++) {
+            var placemark = new ymaps.Placemark(this.ymapsContacts[i].coordinates,
+                {
+                    hintContent: this.ymapsContacts[i].pointToolTip,
+                    balloonContent: '<div style="text-align: center;">' + this.ymapsContacts[i].city + ',<br />'
+                    + this.ymapsContacts[i].street + ',<br />' + this.ymapsContacts[i].house + '<br /><br />' +
+                    '<span style="' +
+                    'font-family: Tahoma, Verdana, Segoe, sans-serif;' +
+                    'font-weight: 500;line-height: 13.4px;' +
+                    'font-size: 12px;letter-spacing: 0.08em;">' + this.ymapsContacts[i].work.days +
+                    '</span> ' + this.ymapsContacts[i].work.time + '<br /><br />' +
+                    '<div style="' +
+                    'font-family: Tahoma, Verdana, Segoe, sans-serif;' +
+                    'font-weight: 500;' +
+                    'line-height: 14.4px;' +
+                    'margin-bottom: 5px;' +
+                    'margin-top: -3px;">' +
+                    '<span style="font-size: 13px;">' + this.ymapsContacts[i].contact.zip + '</span>&nbsp;' +
+                    '<span style="font-size: 18px;">' + this.ymapsContacts[i].contact.phone + '</span>' +
+                    '</div>' +
+                    '<a style="font-size: 13px;" class="mail" href="mailto:'
+                    + this.ymapsContacts[i].contact.mail + '">' + this.ymapsContacts[i].contact.mail + '</a>' +
+                    '</div>'
+                },
+                {
+                    balloonShadow: false,
+                    balloonLayout: balloonLayout,
+                    balloonContentLayout: balloonContentLayout,
+                    balloonPanelMaxMapArea: 0,
+                    hideIconOnBalloonOpen: false,
+                    iconImageHref: img,
+                    iconLayout: squareLayout,
+                    iconShape: {
+                        type: 'Rectangle',
+                        coordinates: [
+                            [-25, -25], [25, 25]
+                        ]
+                    }
                 }
-            }
-        );
+            );
 
-        myMap.geoObjects.add(myPlacemark);
-    };
-
-    map.prototype._createBalloonTemplates = function () {
-      debugger;
-
-      for (var i = 0; i < this.ymapsContacts; i++){
-
-      }
-
+            that.balloonTemplates.push(placemark);
+        }
     };
 
     ui.view.Map = map;
 
 }(jQuery));
-
-// jQuery(document).ready(function() {
-//     var view = new yamps.Map();
-// });

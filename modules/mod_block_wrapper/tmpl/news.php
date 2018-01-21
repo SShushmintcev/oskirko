@@ -61,12 +61,12 @@ $blockHeight = $data->height + 140;
 		                                }
 	                                }
 
-	                                $cont = trim(mb_substr($text, 0, 150));
+	                                $cont = trim(mb_substr($text, 0, 190));
 
                                 }
                                 else
                                 {
-	                                $cont = trim(mb_substr($cont, 0, 150));
+	                                $cont = trim(mb_substr($cont, 0, 190));
                                 }
                                 ?>
 

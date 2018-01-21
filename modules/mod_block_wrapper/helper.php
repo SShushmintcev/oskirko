@@ -147,7 +147,8 @@ class ModBlockWrapper
 		    {
 			    // We know that user has the privilege to view the article
 			    // $item->link     = JRoute::_('index.php?option=com_content&view=article&id=' . $item->id);
-			    $item->link     = JRoute::_(ContentHelperRoute::getArticleRoute($item->id, $item->catid, $item->language));
+                $artRoute = ContentHelperRoute::getArticleRoute($item->id, $item->catid, $item->language);
+			    $item->link     = JRoute::_($artRoute);
 		    }
 		    else
 		    {

@@ -35,6 +35,8 @@ else
 			$output = '<label for="mod-search-searchword' . $module->id . '" class="element-invisible">' . $label . '</label> ';
 			$output .= '<input name="searchword" id="mod-search-searchword' . $module->id . '" maxlength="' . $maxlength . '"  class="inputbox search-query input-medium" type="search"' . $width;
 			$output .= ' placeholder="' . $text . '" />';
+			$output .= '<input type="image" alt="' . $button_text . '" class="button" src="' . $imgPath .
+                'search.png" onclick="this.form.searchword.focus();" style="position: absolute;margin-top: 4px;margin-left: 0;"/>';
 
 			echo $output;
 		?>

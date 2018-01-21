@@ -90,10 +90,6 @@
     font-size: 14px;
 }
 
-.block-wrapper-body-content ul li{
-    margin-bottom: 20px;
-}
-
 .block-wrapper-body-content ul li:last-child{
     margin-bottom: 0;
 }
