@@ -29,6 +29,11 @@ table {
     border-collapse: separate;
 }
 
+.label-info, .badge-info {
+	color: #fff;
+	background: #20003f;
+}
+
 .main-clients, .main-case {
     font-family: KunstlerScript;
     font-size: 72pt;
