@@ -617,7 +617,7 @@ input.search-query {
     margin: 0 17px;
 }
 
-.c-right-cont {
+.c-right-cont, .c-right {
     width: 300px;
     overflow: hidden;
 }
@@ -640,6 +640,31 @@ input.search-query {
 }
 
 .c-right-cont .block-wrapper-footer {
+    border-right: 0;
+}
+
+.c-right .block-wrapper {
+    margin-bottom: 25px;
+}
+
+.c-right .block-wrapper-title {
+    border-right: 0;
+}
+
+.c-right .block-wrapper-body {
+    border-right: 0;
+}
+
+.c-right .block-wrapper-body-content {
+    margin-left: 20px;
+    margin-right: 1px;
+}
+
+.c-right .block-wrapper-footer {
+    border-right: 0;
+}
+
+.c-right .block-wrapper-footer {
     border-right: 0;
 }
 

@@ -180,14 +180,17 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
                             <?php } ?>
                         </div>
                     </div>
-                    <div class="left c-right-cont">
-                        <?php if ($is_home_page) { ?>
+                    <?php if ($is_home_page) { ?>
+                        <div class="left c-right-cont">
                             <jdoc:include type="modules" name="news"/>
-                        <? } else { ?>
+                        </div>
+                    <?php } else { ?>
+                        <div class="left c-right">
                             <jdoc:include type="modules" name="news"/>
                             <jdoc:include type="modules" name="right"/>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
+
                     <div class="clear"></div>
                 </div>
                 <?php if ($is_home_page) { ?>

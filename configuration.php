@@ -31,8 +31,8 @@ class JConfig {
 	public $offset = 'UTC';
 	public $mailonline = '1';
 	public $mailer = 'mail';
-	public $mailfrom = 'small85@mail.ru';
-	public $fromname = 'Адвокатская палата';
+	public $mailfrom = 'info@oskirko.spb.ru';
+	public $fromname = 'Адвокатская консультация Оскирко и партнеры';
 	public $sendmail = '/usr/sbin/sendmail';
 	public $smtpauth = '0';
 	public $smtpuser = '';
@@ -44,7 +44,7 @@ class JConfig {
 	public $cache_handler = 'file';
 	public $cachetime = '15';
 	public $cache_platformprefix = '0';
-	public $MetaDesc = 'Адвокатская палата';
+	public $MetaDesc = 'Адвокатская консультация Оскирко и партнеры';
 	public $MetaKeys = '';
 	public $MetaTitle = '1';
 	public $MetaAuthor = '0';

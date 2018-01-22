@@ -2132,8 +2132,8 @@ table th[class*="span"],
 	min-height: 20px;
 	padding: 19px;
 	margin-bottom: 20px;
-	background-color: #F0F0F0;
-	border: 1px solid #F0F0F0;
+	background-color: #fff;
+	border: 1px solid #fff;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -2321,14 +2321,13 @@ input[type="button"].btn-block {
 	box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 .btn-primary {
-	border: 1px solid #15497c;
 	border: 1px solid rgba(0,0,0,0.2);
 	color: #fff;
-	background-color: #2384d3;
+	background-color: #190032;
 }
 .btn-primary:hover,
 .btn-primary:focus {
-	background-color: #185b91;
+	background-color: #290052;
 	color: #fff;
 	text-decoration: none;
 }
@@ -7664,7 +7663,7 @@ textarea.noResize {
 	}
 }
 .view-login {
-	background-color: #17568c;
+	background-color: #fff;
 	padding-top: 0;
 }
 .view-login .container {

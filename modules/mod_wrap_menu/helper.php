@@ -38,7 +38,7 @@ class ModWrapMenu
                     $item->preview ->body = '';
                     $item->preview ->title = '';
 
-                    if ($i <= 5) {
+                    if ($i < 5) {
                         $item->style = $defaultColor[$i];
                     } else {
                         $item->style = new StyleObject(self::randomColor(), '#161616');

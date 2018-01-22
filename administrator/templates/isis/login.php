@@ -14,6 +14,9 @@ defined('_JEXEC') or die;
 $app  = JFactory::getApplication();
 $lang = JFactory::getLanguage();
 
+$doc = $app->getDocument();
+$doc->setGenerator(null);
+
 // Output as HTML5
 $this->setHtml5(true);
 
@@ -112,12 +115,6 @@ if (JPluginHelper::isEnabled('system', 'debug') && ($app->get('debug_lang', 0) |
 		<div id="content">
 			<!-- Begin Content -->
 			<div id="element-box" class="login well">
-				<?php if ($loginLogoFile = $this->params->get('loginLogoFile')) : ?>
-					<img src="<?php echo JUri::root() . $loginLogoFile; ?>" alt="<?php echo $sitename; ?>" />
-				<?php else: ?>
-					<img src="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/images/joomla.png" alt="<?php echo $sitename; ?>" />
-				<?php endif; ?>
-				<hr />
 				<jdoc:include type="message" />
 				<jdoc:include type="component" />
 			</div>
@@ -131,7 +128,6 @@ if (JPluginHelper::isEnabled('system', 'debug') && ($app->get('debug_lang', 0) |
 		<p class="pull-right">
 			&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
 		</p>
-		<a class="login-joomla hasTooltip" href="https://www.joomla.org" target="_blank"  rel="noopener noreferrer" title="<?php echo JHtml::_('tooltipText', 'TPL_ISIS_ISFREESOFTWARE'); ?>"><span class="icon-joomla"></span></a>
 		<a href="<?php echo $frontEndUri->toString(); ?>" target="_blank" class="pull-left"><span class="icon-out-2"></span><?php echo JText::_('COM_LOGIN_RETURN_TO_SITE_HOME_PAGE'); ?></a>
 	</div>
 	<jdoc:include type="modules" name="debug" style="none" />
