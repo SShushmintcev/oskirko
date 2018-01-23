@@ -457,6 +457,7 @@ input.search-query {
 #lContent {
     min-height: 450px;
     position: relative;
+	background: #f8f8f8;
     display: block;
 }
 
@@ -466,6 +467,7 @@ input.search-query {
     border-left: 1px solid #e5e5e5;
     border-right: 1px solid #e5e5e5;
     box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.23);
+	background: #fff;
 }
 
 .l-main-menu {
