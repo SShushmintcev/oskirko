@@ -58,4 +58,10 @@ elseif ($item->browserNav == 2)
 	$attributes['onclick'] = "window.open(this.href, 'targetWindow', '" . $options . "'); return false;";
 }
 
-echo JHtml::_('link', JFilterOutput::ampReplace(htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false)), $linktype, $attributes);
+if ($showPreview && $item->preview->body) {
+	echo '<div id='. $item->id .' class="preview" style="display: none" data-title='. $item->preview->title .'>' . $item->preview->body . '</div>';
+}
+
+$uri = htmlspecialchars($item->flink, ENT_COMPAT, 'UTF-8', false);
+
+echo JHtml::_('link', JFilterOutput::ampReplace($uri), $linktype, $attributes);

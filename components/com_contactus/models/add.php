@@ -148,15 +148,15 @@ class ContactusModelAdd extends JModelLegacy
 				}
 			}
 		}
-		if (!empty($data["module_title"])){ 
-			$body = $body.'<br><b>'.JText::_('COM_CONTACTUS_FORM_ID').'</b>: '.$data['module_title'];
-		}
-		if (isset($data['page'])){ 
-			$body = $body.'<br><b>'.JText::_('COM_CONTACTUS_PAGE').'</b>: '.$data['page'];
-		}
-		if (isset($data['ip'])){ 
-			$body = $body.'<br><b>'.JText::_('COM_CONTACTUS_IP').'</b>: '.$data['ip'];
-		}
+//		if (!empty($data["module_title"])){
+//			$body = $body.'<br><b>'.JText::_('COM_CONTACTUS_FORM_ID').'</b>: '.$data['module_title'];
+//		}
+//		if (isset($data['page'])){
+//			$body = $body.'<br><b>'.JText::_('COM_CONTACTUS_PAGE').'</b>: '.$data['page'];
+//		}
+//		if (isset($data['ip'])){
+//			$body = $body.'<br><b>'.JText::_('COM_CONTACTUS_IP').'</b>: '.$data['ip'];
+//		}
 
 		return $body;
 	}

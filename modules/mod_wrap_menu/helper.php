@@ -21,6 +21,7 @@ class ModWrapMenu
             $items = $cache->get($key);
         } else {
             $items = $menu->getItems('menutype', $params->get('menutype'));
+
             $hidden_parents = array();
             $lastitem = 0;
 
@@ -84,12 +85,9 @@ class ModWrapMenu
                             if (preg_match('/&id=(.*)/', $item->link, $matches, PREG_OFFSET_CAPTURE)) {
                                 $articleId = $matches[1][0];
 
-
 	                            $articleModel = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true));
 	                            $articleModel->setState('params', $params);
 	                            $article = $articleModel->getItem($articleId);
-
-                                //$article = JControllerLegacy::getInstance('Content')->getModel('Article')->getItem($articleId);
 
                                 if ($article) {
                                     $cont = str_replace(array("\r\n", "\r"), "", $article->introtext);
@@ -122,7 +120,29 @@ class ModWrapMenu
                             break;
 
                         case 'alias':
-                            $item->flink = 'index.php?Itemid=' . $item->params->get('aliasoptions');
+                        	$artId = $item->params->get('aliasoptions');
+
+                        	$parentAliasItem = $menu->getItem($artId);
+
+	                        $matches = null;
+	                        if (preg_match('/&id=(.*)/', $parentAliasItem->link, $matches, PREG_OFFSET_CAPTURE)) {
+		                        $articleId = $matches[1][0];
+
+		                        $articleModel = JModelLegacy::getInstance('Article', 'ContentModel', array('ignore_request' => true));
+		                        $articleModel->setState('params', $params);
+		                        $article = $articleModel->getItem($articleId);
+
+		                        if ($article) {
+			                        $cont = str_replace(array("\r\n", "\r"), "", $article->introtext);
+
+			                        if($cont){
+				                        $item->preview->body = $cont;
+				                        $item->preview->title = $item->title;
+			                        }
+		                        }
+	                        }
+
+                            $item->flink = 'index.php?Itemid=' . $artId;
                             break;
 
                         default:
