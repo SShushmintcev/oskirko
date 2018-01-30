@@ -2,11 +2,12 @@ html {
     font-size: 100%;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
+  	height: 100%;
+  
 }
 
-html,
 body {
-    min-height: 100%;
+  min-width: 1020px;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -19,10 +20,22 @@ body {
     line-height: 20px;
 }
 
+#wrapper {
+  position: relative;
+  padding-bottom: 345px;
+}
+
 @font-face {
     font-family: 'KunstlerScript';
     src: local('KunstlerScript'),
     url('../css/kunstler.ttf') format('truetype');
+}
+
+#system-message {
+  margin: 0 auto;
+  background: #e6ca0017;
+    border: 1px solid #e6ca00;
+    width: 500px;
 }
 
 table {
@@ -70,10 +83,6 @@ table {
 
 .c-center-body > .youtube-video {
     margin-bottom: 12px;
-}
-
-body {
-    position: relative;
 }
 
 .text-verdana {
@@ -137,6 +146,11 @@ body {
 .close-balloon:hover {
     text-shadow: 0 1px 8px #d6d6d6;
     color: white;
+}
+
+.outer {
+      margin: 0 auto;
+    width: 298px;
 }
 
 [class*="ymaps-2"][class*="-ground-pane"] {
@@ -250,7 +264,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
     color: #2d626c;
-    line-height: 0;
+    line-height: 18px;
     text-transform: uppercase;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
@@ -294,7 +308,7 @@ ul {
     padding: 0;
     border: 0;
     font-size: inherit;
-    line-height: 14px;
+    line-height: 11.3pt;
     font-family: inherit;
 }
 
@@ -455,7 +469,7 @@ input.search-query {
 }
 
 #lContent {
-    min-height: 450px;
+    /*min-height: 450px;*/
     position: relative;
 	background: #f8f8f8;
     display: block;
@@ -572,7 +586,7 @@ input.search-query {
     padding-right: 10px;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 0.75em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
 }
 
 .left-child-menu li::before {
@@ -738,7 +752,7 @@ input.search-query {
     font-size: 11.8pt;
     font-style: normal;
     font-variant: normal;
-    margin-top: 7px;
+    margin-top: 0;
     margin-bottom: 15px;
     border-bottom: 0;
     font-weight: normal;
@@ -754,7 +768,10 @@ input.search-query {
 #lFooter {
     background: rgba(23, 23, 24, 1);
     color: #919090;
-    position: relative;
+    /*position: relative;*/
+      bottom: 0;
+    width: 100%;
+  position: absolute;
     display: block;
     font-size: 12.3pt;
 }

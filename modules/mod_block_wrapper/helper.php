@@ -12,6 +12,10 @@ class ModBlockWrapper
     public static function getData(&$params)
     {
         $data = new stdClass();
+
+        $title = $params->get('title_text');
+	    $showTitle = $params->get('title') === "1";
+
         $data->body = null;
         $data->title = "";
         $styleDictionary = array(
@@ -72,6 +76,11 @@ class ModBlockWrapper
 			        break;
 		        default :
 			        break;
+	        }
+
+
+	        if (isset($title) && $showTitle) {
+		        $data->title = $title;
 	        }
         }
         catch (Exception $e) {

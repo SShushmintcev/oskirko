@@ -213,7 +213,7 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
             </div>
         </div>
     </div>
-
+<div class="clear"></div>
     <div id="lFooter">
         <div class="l-footer l-container">
             <div class="l-footer-content">

@@ -55,6 +55,14 @@
                 <option value="0">JNO</option>
             </field>
 
+            <field
+                    name="title_text"
+                    type="text"
+                    label="Название блока"
+                    description="Задает название блока (По умолчанию берется название материала или категории)."
+                    showon="title:1"
+            />
+
             <field name="width" 
                 type="number" 
                 default="300" 

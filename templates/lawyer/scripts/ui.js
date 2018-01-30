@@ -63,6 +63,8 @@ var ui;
 
             if (parent.id !== "searchForm") {
                 ui.hide("#searchForm");
+                var input = $("input[name='searchword']");
+                input.val("");
             }
         },
 

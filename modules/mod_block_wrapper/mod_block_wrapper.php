@@ -19,6 +19,7 @@ $footerUrl = $params->get('all_list');
 $footerUrlText = $params->get('all_list_text');
 
 $showTitle = $params->get('title') === "1";
+$title_text = $params->get('title_text');
 
 $showArticleLink = $params->get('article_link') === '1';
 
