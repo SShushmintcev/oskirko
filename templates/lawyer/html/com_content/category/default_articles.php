@@ -204,12 +204,12 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
                                 }
                             }
 
-                            $cont = trim(mb_substr($text, 0, 160));
+                            $cont = trim(mb_substr($text, 0, 300));
 
                         }
                         else
                         {
-                            $cont = trim(mb_substr($cont, 0, 160));
+                            $cont = trim(mb_substr($cont, 0, 300));
                         }
                     ?>
                    <?php echo trim($cont); ?>
