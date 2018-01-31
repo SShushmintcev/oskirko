@@ -312,13 +312,13 @@ ul {
     font-family: inherit;
 }
 
+ul {
+    list-style-type: none;
+}
+
 li {
     margin-bottom: 15px;
     line-height: inherit;
-}
-
-ul {
-    list-style-type: none;
 }
 
 li::before { /* the custom styled bullets */
@@ -370,132 +370,42 @@ ul.g-list li::before {
     display: block;
 }
 
-/*-------LIST---------*/
-
-.ui-datalist-data {
-    position: relative;
-    word-wrap: break-word;
-    display: block;
+.vertical-text-center {
+    vertical-align: middle;
+    height: inherit;
+    display: table-cell;
 }
 
-.ui-datalist-data li {
-    margin-bottom: 0;
+.vertical-text-bottom {
+    vertical-align: bottom;
+    height: inherit;
+    display: table-cell;
 }
 
-.ui-datalist-data li::before {
-    content: none;
+.vertical-text-top {
+    vertical-align: top;
+    height: inherit;
+    display: table-cell;
 }
 
-.ui-datalist-item {
-    display: inline-block;
-}
-
-.ui-datalist-container {
-    width: 100%;
-    padding: 15px 0;
-    position: relative;
-}
-
-.ui-datalist-container-header {
-
-}
-
-.ui-datalist-h-title {
-    font-size: 17px;
+.page-header {
     color: #2d626c;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+    font-size: 11.8pt;
+    font-style: normal;
+    font-variant: normal;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 0;
+    font-weight: normal;
+    text-transform: uppercase;
 }
 
-.ui-datalist-h-date {
-    color: #949697;
-    font-size: 13px;
+.page-header > h2 {
+    margin-top: 0 !important;
+    font-weight: normal;
+    font-size: 11.8pt;
 }
-
-.ui-datalist-h-author {
-    color: #787a7b;
-    font-size: 13px;
-    text-align: left;
-    font-style: italic;
-    margin: 2px 0 0 0;
-}
-
-.ui-datalist-container-body {
-    margin-top: 10px;
-}
-
-.warning {
-    border: 1px solid #e4b551;
-    background: #ffd98773;
-}
-
-.pagination ul {
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-.pagination ul>li>a, .pagination ul>li>span {
-    border: 0;
-    border-radius: 0;
-    padding: 5px 11px;
-    margin: 0 1px;
-}
-
-.pagination ul>.active>a, .pagination ul>.active>span {
-    color: #fff;
-    background: #20003f;
-    cursor: no-drop;
-}
-
-.pagination ul>li>a:hover {
-    color: #fff;
-    background: #20003f;
-}
-
-.pagination ul>li::before {
-    content: none;
-}
-
-.pagination ul>li:last-child>a, .pagination ul>li:last-child>span {
-    border: 0;
-    border-radius: 0;
-}
-
-.pagination ul>li:first-child>a, .pagination ul>li:first-child>span {
-    border: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.pagination ul>.disabled>span, .pagination ul>.disabled>a, .pagination ul>.disabled>a:hover, .pagination ul>.disabled>a:focus {
-    /*background: #0b172a;*/
-    cursor: no-drop;
-}
-
-.pagination ul>li>a>[class^="icon-"]:hover {
-
-    background: url(../img/glyphicons-halflings-white.png) no-repeat;
-}
-
-[class^="icon-first"], [class*=" icon-first"] {
-
-    background-position: -192px -72px;
-}
-
-[class^="icon-previous"], [class*=" icon-previous"] {
-
-    background-position: -242px -72px;
-}
-
-[class^="icon-next"], [class*=" icon-next"] {
-
-    background-position: -334px -72px;
-}
-
-[class^="icon-last"], [class*=" icon-last"] {
-    background-position: -384px -72px;
-}
-
-/*-------END LIST---------*/
 
 #lHeader {
     color: #ffffff;
@@ -596,7 +506,6 @@ input.search-query {
 }
 
 #lContent {
-    /*min-height: 450px;*/
     position: relative;
 	background: #f8f8f8;
     display: block;
@@ -713,7 +622,6 @@ input.search-query {
     padding-right: 10px;
     font-family: Verdana, Geneva, sans-serif;
     font-size: 0.75em;
-    /*text-transform: uppercase;*/
 }
 
 .left-child-menu li::before {
@@ -873,32 +781,12 @@ input.search-query {
     border-right: 0;
 }
 
-.page-header {
-    color: #2d626c;
-    font-family: Tahoma, Verdana, Segoe, sans-serif;
-    font-size: 11.8pt;
-    font-style: normal;
-    font-variant: normal;
-    margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 0;
-    font-weight: normal;
-    text-transform: uppercase;
-}
-
-.page-header > h2 {
-    margin-top: 0 !important;
-    font-weight: normal;
-    font-size: 11.8pt;
-}
-
 #lFooter {
     background: rgba(23, 23, 24, 1);
     color: #919090;
-    /*position: relative;*/
-      bottom: 0;
+    bottom: 0;
     width: 100%;
-  position: absolute;
+    position: absolute;
     display: block;
     font-size: 12.3pt;
 }
@@ -1076,7 +964,7 @@ input.search-query {
     border: 0;
 }
 
-/*Custom popup*/
+/*-------Custom popup----------*/
 
 #customPopup {
     font-size: 13px;
@@ -1111,20 +999,161 @@ input.search-query {
     padding-bottom: 10px;
 }
 
-.vertical-text-center {
-    vertical-align: middle;
-    height: inherit;
-    display: table-cell;
+/*-------EndCustom popup----------*/
+
+/*-------LIST---------*/
+
+.ui-datalist-data {
+    position: relative;
+    word-wrap: break-word;
+    display: block;
 }
 
-.vertical-text-bottom {
-    vertical-align: bottom;
-    height: inherit;
-    display: table-cell;
+.ui-datalist-data li {
+    margin-bottom: 0;
 }
 
-.vertical-text-top {
-    vertical-align: top;
-    height: inherit;
-    display: table-cell;
+.ui-datalist-data li::before {
+    content: none;
 }
+
+.ui-datalist-item {
+    display: inline-block;
+}
+
+.ui-datalist-container {
+    width: 100%;
+    padding: 15px 0;
+    position: relative;
+}
+
+.ui-datalist-h-title {
+    font-size: 17px;
+    color: #2d626c;
+}
+
+.ui-datalist-h-date {
+    color: #949697;
+    font-size: 13px;
+}
+
+.ui-datalist-h-author {
+    color: #787a7b;
+    font-size: 13px;
+    text-align: left;
+    font-style: italic;
+    margin: 2px 0 0 0;
+}
+
+.ui-datalist-container-body {
+    margin-top: 10px;
+}
+
+.warning {
+    border: 1px solid #e4b551;
+    background: #ffd98773;
+}
+
+.pagination ul {
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.pagination ul>li>a, .pagination ul>li>span {
+    border: 0;
+    border-radius: 0;
+    padding: 5px 11px;
+    margin: 0 1px;
+}
+
+.pagination ul>.active>a, .pagination ul>.active>span {
+    color: #fff;
+    background: #20003f;
+    cursor: no-drop;
+}
+
+.pagination ul>li>a:hover {
+    color: #fff;
+    background: #20003f;
+}
+
+.pagination ul>li::before {
+    content: none;
+}
+
+.pagination-list>li:last-child>a, .pagination ul>li:last-child>span {
+    border: 0;
+    border-radius: 0;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.pagination ul>li:first-child>a, .pagination ul>li:first-child>span {
+    border: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.pagination ul>.disabled>span,
+.pagination ul>.disabled>a,
+.pagination ul>.disabled>a:hover,
+.pagination ul>.disabled>a:focus {    
+    cursor: no-drop;
+}
+
+.pagination ul>li>.pagenav:hover>[class^="icon-"],
+.pagination ul>li>.pagenav:focus>[class^="icon-"],
+.pagination ul>li>.pagenav:hover>[class*=" icon-"],
+.pagination ul>li>.pagenav:focus>[class*=" icon-"] {
+    background: url(../img/glyphicons-halflings-white.png) no-repeat;
+}
+
+.pagination ul>li>.pagenav:hover>[class^="icon-first"],
+.pagination ul>li>.pagenav:focus>[class^="icon-first"],
+.pagination ul>li>.pagenav:hover>[class*=" icon-first"],
+.pagination ul>li>.pagenav:focus>[class*=" icon-first"] {
+    background-position: -192px -72px;
+}
+
+.pagination ul>li>.pagenav:hover>[class^="icon-previous"],
+.pagination ul>li>.pagenav:focus>[class^="icon-previous"],
+.pagination ul>li>.pagenav:hover>[class*=" icon-previous"],
+.pagination ul>li>.pagenav:focus>[class*=" icon-previous"] {
+    background-position: -242px -72px;
+}
+
+.pagination ul>li>.pagenav:hover>[class^="icon-next"],
+.pagination ul>li>.pagenav:focus>[class^="icon-next"],
+.pagination ul>li>.pagenav:hover>[class*=" icon-next"],
+.pagination ul>li>.pagenav:focus>[class*=" icon-next"] {
+    background-position: -334px -72px;
+}
+
+.pagination ul>li>.pagenav:hover>[class^="icon-last"],
+.pagination ul>li>.pagenav:focus>[class^="icon-last"],
+.pagination ul>li>.pagenav:hover>[class*=" icon-last"],
+.pagination ul>li>.pagenav:focus>[class*=" icon-last"] {
+    background-position: -384px -72px;
+}
+
+[class^="icon-first"], [class*=" icon-first"] {
+
+    background-position: -192px -72px;
+}
+
+[class^="icon-previous"], [class*=" icon-previous"] {
+
+    background-position: -242px -72px;
+}
+
+[class^="icon-next"], [class*=" icon-next"] {
+
+    background-position: -334px -72px;
+}
+
+[class^="icon-last"], [class*=" icon-last"] {
+    background-position: -384px -72px;
+}
+
+/*-------END LIST---------*/
