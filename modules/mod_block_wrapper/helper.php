@@ -167,23 +167,32 @@ class ModBlockWrapper
 
 
 		    $item->introtext = JHtml::_('content.prepare', $item->introtext, '', 'mod_block_wrapper.content');
-//
+
+		    $pattern = "/<a?[\w\d\s\=\"\'\:\/\?\.]*><img[^>]*><\/a>/";
+		    $matches = null;
+
+		    $countMatches = preg_match_all($pattern, $item->introtext, $matches, PREG_SET_ORDER);
+
+		    if ($countMatches > 0) {
+			    $item->introtext = preg_replace($pattern, '', $item->introtext);
+		    }
+
 //		    if (!$params->get('image'))
 //		    {
 		    $item->introtext = preg_replace('/<img[^>]*>/', '', $item->introtext);
 //		    }
-//
+
 //		    if ($triggerEvents)
 //		    {
 //			    $item->text = '';
 //			    $app->triggerEvent('onContentPrepare', array ('com_content.article', &$item, &$params, 0));
-//
+
 //			    $results                 = $app->triggerEvent('onContentAfterTitle', array('com_content.article', &$item, &$params, 0));
 //			    $item->afterDisplayTitle = trim(implode("\n", $results));
-//
+
 //			    $results                    = $app->triggerEvent('onContentBeforeDisplay', array('com_content.article', &$item, &$params, 0));
 //			    $item->beforeDisplayContent = trim(implode("\n", $results));
-//
+
 //			    $results                   = $app->triggerEvent('onContentAfterDisplay', array('com_content.article', &$item, &$params, 0));
 //			    $item->afterDisplayContent = trim(implode("\n", $results));
 //		    }
